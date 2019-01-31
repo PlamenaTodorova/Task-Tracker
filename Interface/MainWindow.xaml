@@ -1,0 +1,98 @@
+﻿<Window x:Class="Interface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Interface"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1050"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Border CornerRadius="45"
+            Background="#4d004d">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Margin="25 10"
+                            Orientation="Horizontal">
+                    <Image Source="Icons/logo.png"/>
+                    <Label Foreground="White"
+                           VerticalAlignment="Center"
+                           Padding="10 0"
+                           FontSize="35"                           
+                           Content="Task Tracker"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Margin="25 10"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Image Source="Icons/min.png"
+                           Margin="10 0"/>
+                    <Image Source="Icons/close.png"
+                           Margin="10 0 0 0"/>
+                </StackPanel>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Margin="15">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 15">
+                        <Image Source="Icons/back.png"/>
+                        <Label Content="Back"
+                               Foreground="White"
+                               FontSize="20"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 15">
+                        <Image Source="Icons/daily.png"/>
+                        <Label Content="Daily Tasks"
+                               Foreground="White"
+                               FontSize="20"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 15">
+                        <Image Source="Icons/all.png"/>
+                        <Label Content="All Tasks"
+                               Foreground="White"
+                               FontSize="20"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 15">
+                        <Image Source="Icons/calendar.png"/>
+                        <Label Content="Calendar"
+                               Foreground="White"
+                               FontSize="20"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Frame Grid.Column="1"
+                       Name="PageHolder"
+                       Background="WhiteSmoke">
+                    
+                </Frame>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
