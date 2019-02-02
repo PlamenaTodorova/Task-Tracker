@@ -23,6 +23,7 @@ namespace Interface
         public MainWindow()
         {
             InitializeComponent();
+            this.PageHolder.Navigate(new OneDay());
         }
     }
 }
