@@ -34,6 +34,7 @@
                             <ColumnDefinition Width="1.7*"/>
                             <ColumnDefinition Width="10*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Margin="15"
@@ -75,14 +76,22 @@
 
                         </StackPanel>
 
-                        <StackPanel Grid.Column="2"
+                        <Button Grid.Column="2" 
+                                Background="Transparent"
+                                BorderThickness="0"
+                                FontSize="35"
+                                Content="&#10003;"/>
+
+                        <StackPanel Grid.Column="3"
                                     VerticalAlignment="Center">
                             <Button Background="Transparent"
                                     BorderThickness="0"
                                     Content="&#9998;"
+                                    FontSize="20"
                                     Margin="0 0 0 15"/>
                             <Button Background="Transparent"
                                     BorderThickness="0"
+                                    FontSize="20"
                                     Content="&#10008;"/>
                         </StackPanel>
                     </Grid>
@@ -99,6 +108,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.7*"/>
                             <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
@@ -140,15 +150,23 @@
 
                         </StackPanel>
 
-                        <StackPanel Grid.Column="2"
+                        <Button Grid.Column="2" 
+                                Background="Transparent"
+                                BorderThickness="0"
+                                FontSize="35"
+                                Content="&#10003;"/>
+
+                        <StackPanel Grid.Column="3"
                                 VerticalAlignment="Center">
                             <Button Background="Transparent"
-                                BorderThickness="0"
-                                Content="&#9998;"
-                                Margin="0 0 0 15"/>
+                                    BorderThickness="0"
+                                    Content="&#9998;"
+                                    FontSize="20"
+                                    Margin="0 0 0 15"/>
                             <Button Background="Transparent"
-                                BorderThickness="0"
-                                Content="&#10008;"/>
+                                    BorderThickness="0"
+                                    FontSize="20"
+                                    Content="&#10008;"/>
                         </StackPanel>
                     </Grid>
                 </Border>
