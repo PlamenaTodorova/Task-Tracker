@@ -99,7 +99,7 @@
                            Text="Description:"/>
                 <Rectangle Grid.Column="1"
                            Grid.RowSpan="4"
-                           Fill="WhiteSmoke"/>
+                           Fill="#fffdd0"/>
                 <TextBox Grid.Column="1"
                          Grid.Row="0"
                          Margin="15 15 30 15"/>
@@ -121,9 +121,13 @@
                     <Button Content="Save"
                             Padding="25 0"
                             FontSize="25"
+                            FontWeight="DemiBold"
+                            Background="#fffdd0"
                             Margin="0 0 15 0"/>
                     <Button Content="Close"
                             Padding="25 0"
+                            FontWeight="DemiBold"
+                            Background="#fffdd0"
                             FontSize="25"/>
                 </StackPanel>
             </Grid>
