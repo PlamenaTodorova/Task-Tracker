@@ -23,6 +23,7 @@ namespace Interface.Pages
         public DayFrame()
         {
             InitializeComponent();
+            this.frameHolder.Navigate(new OneDay());
         }
     }
 }

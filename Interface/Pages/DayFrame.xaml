@@ -7,8 +7,45 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="#fffdd0">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <StackPanel>
+        <Grid Height="40"
+              Background="LightGray"
+              Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-    <Grid>
-        
-    </Grid>
+            <Button Style="{StaticResource ImageButtonStyle}"
+                    Grid.Column="0">
+                <Image Source="../Icons/previous-day.png"
+                       Margin="10 5"/>
+            </Button>
+            <TextBlock Grid.Column="1"
+                       Text="02/02/2019"
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ImageButtonStyle}"
+                    Grid.Column="2">
+                <Image Source="../Icons/next-day.png"
+                       Margin="10 5"/>
+            </Button>
+        </Grid>
+
+        <Frame Name="frameHolder"/>
+    </StackPanel>
 </Page>

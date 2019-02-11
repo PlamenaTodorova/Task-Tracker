@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +24,7 @@ namespace Interface
         public MainWindow()
         {
             InitializeComponent();
-            this.PageHolder.Navigate(new OneDay());
+            this.PageHolder.Navigate(new DayFrame());
         }
 
         private void MinimizeWindow(object sender, RoutedEventArgs e)
