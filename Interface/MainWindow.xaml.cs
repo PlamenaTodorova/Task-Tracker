@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Interface.Dialogs;
 using Interface.Pages;
 
 namespace Interface
@@ -35,6 +36,23 @@ namespace Interface
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void SwitchToDaily(object sender, RoutedEventArgs e)
+        {
+            this.PageHolder.Navigate(new DayFrame());
+        }
+
+        private void OpenNewTaskDialog(object sender, RoutedEventArgs e)
+        {
+            NewTaskDialog newTask = new NewTaskDialog();
+
+            newTask.ShowDialog();
+        }
+
+        private void SwitchToAllTasks(object sender, RoutedEventArgs e)
+        {
+            this.PageHolder.Navigate(new AllTasks());
         }
     }
 }

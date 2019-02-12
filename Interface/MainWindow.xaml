@@ -87,7 +87,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource ImageButtonStyle}">
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="SwitchToDaily">
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/daily.png"/>
@@ -95,7 +96,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource ImageButtonStyle}">
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="OpenNewTaskDialog">
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/plus.png"/>
@@ -103,7 +105,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource ImageButtonStyle}">
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="SwitchToAllTasks">
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/all.png"/>
