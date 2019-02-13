@@ -8,7 +8,8 @@
         Title="MainWindow" Height="650" Width="1050"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent">
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
             <Setter Property="Template">
@@ -125,6 +126,7 @@
 
                 <Frame Grid.Column="1"
                        Name="PageHolder"
+                       NavigationUIVisibility="Hidden"
                        Background="#fffdd0">
                     
                 </Frame>

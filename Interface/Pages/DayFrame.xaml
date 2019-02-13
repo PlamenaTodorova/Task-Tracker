@@ -46,6 +46,7 @@
             </Button>
         </Grid>
 
-        <Frame Name="frameHolder"/>
+        <Frame Name="frameHolder"
+               NavigationUIVisibility="Hidden"/>
     </StackPanel>
 </Page>
