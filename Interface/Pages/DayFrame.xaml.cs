@@ -20,10 +20,13 @@ namespace Interface.Pages
     /// </summary>
     public partial class DayFrame : Page
     {
+        DateTime date;
+
         public DayFrame()
         {
             InitializeComponent();
-            this.frameHolder.Navigate(new OneDay());
+            this.date = DateTime.Today;
+            this.frameHolder.Navigate(new OneDay(date));
         }
     }
 }

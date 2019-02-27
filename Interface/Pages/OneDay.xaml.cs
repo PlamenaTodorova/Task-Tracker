@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Interface.Pages
     /// </summary>
     public partial class OneDay : Page
     {
-        public OneDay()
+        private OneDayController controller;
+
+        public OneDay(DateTime date)
         {
             InitializeComponent();
+            this.controller = new OneDayController(date);
         }
     }
 }

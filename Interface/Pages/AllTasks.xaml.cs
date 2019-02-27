@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Interface.Pages
     /// </summary>
     public partial class AllTasks : Page
     {
+        private AllTaskController controller;
+
         public AllTasks()
         {
             InitializeComponent();
+            this.controller = new AllTaskController();
         }
     }
 }
