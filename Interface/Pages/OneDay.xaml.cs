@@ -1,6 +1,8 @@
 ﻿using Interface.Controllers;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,13 @@ namespace Interface.Pages
         {
             InitializeComponent();
             this.controller = new OneDayController(date);
+            ObservableCollection<TaskViewModel> collection = this.controller.GetTasks();
+            this.tasks.ItemsSource = collection;
+            this.tasks_existance.Visibility = collection.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+
+            collection = this.controller.GetGoals();
+            this.goals.ItemsSource = collection;
+            this.goals_existance.Visibility = collection.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Models.ViewModels;
+﻿using DataStorage;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +20,8 @@ namespace Interface.Controllers
 
         protected override void GenerateTasks()
         {
-            throw new NotImplementedException();
+            List<TaskViewModel> tasks = Engin.GetEngin().GetTasks(date).ToList();
+            this.tasks = new ObservableCollection<TaskViewModel>(tasks);
         }
     }
 }

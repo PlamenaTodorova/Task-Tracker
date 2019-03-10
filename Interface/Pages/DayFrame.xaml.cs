@@ -26,7 +26,25 @@ namespace Interface.Pages
         {
             InitializeComponent();
             this.date = DateTime.Today;
+            this.ChangeFrame();
+        }
+
+        private void ChangeFrame()
+        {
             this.frameHolder.Navigate(new OneDay(date));
         }
+
+        private void MoveBack(object sender, RoutedEventArgs e)
+        {
+            this.date = this.date.AddDays(-1);
+            this.ChangeFrame();
+        }
+
+        private void MoveForward(object sender, RoutedEventArgs e)
+        {
+            this.date = this.date.AddDays(1);
+            this.ChangeFrame();
+        }
+
     }
 }

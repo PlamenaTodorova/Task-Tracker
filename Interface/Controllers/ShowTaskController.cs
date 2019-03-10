@@ -1,4 +1,6 @@
-﻿using Models.ViewModels;
+﻿using DataStorage;
+using Models.BindingModels;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,29 +23,30 @@ namespace Interface.Controllers
 
         public ObservableCollection<TaskViewModel> GetTasks()
         {
-            throw new NotImplementedException();
+            return tasks;
         }
 
         public ObservableCollection<TaskViewModel> GetGoals()
         {
-            throw new NotImplementedException();
+            return goals;
         }
 
-        public bool ChangeTask()
+        public bool ChangeTask(string id, TaskBindingModel model)
         {
-            throw new NotImplementedException();
+            return Engin.GetEngin().Change(id, model);
         }
 
-        public bool DeleteTask()
+        public bool DeleteTask(string id, TaskBindingModel model)
         {
-            throw new NotImplementedException();
+            return Engin.GetEngin().Change(id, model);
         }
 
         protected abstract void GenerateTasks();
 
         private void GenerataGoals()
         {
-
+            List<TaskViewModel> goals = Engin.GetEngin().GetGoals().ToList();
+            this.goals = new ObservableCollection<TaskViewModel>(goals);
         }
     }
 }

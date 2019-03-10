@@ -1,21 +1,15 @@
-﻿using System;
+﻿using Models.DatabaseModels;
+using System;
 
 namespace Models.ViewModels
 {
-    public enum ViewType
-    {
-        Work,
-        School,
-        Social,
-        Apointment,
-        Goal
-    }
-
     public class TaskViewModel
     {
         public string Name { get; set; }
 
-        public ViewType Type { get; set; }
+        public string Type { get; set; }
+
+        public string PicturePath { get; set; }
 
         public DateTime Dateline { get; set; }
 

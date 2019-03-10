@@ -5,21 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStorage
 {
     public class Engin
     {
-        private DataStorage dataStorage;
-        private Engin engin;
+        private TaskContext context;
+        private static Engin engin;
 
         private Engin()
         {
-            this.dataStorage = new DataStorage();
+            this.context = new TaskContext();
         }
 
-        public Engin GetEngin()
+        public static Engin GetEngin()
         {
             if (engin == null)
                 engin = new Engin();
@@ -29,14 +28,43 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetTasks(DateTime date)
         {
-            throw new NotImplementedException();
-            //TODO
+            List<TaskViewModel> views = new List<TaskViewModel>();
+            List<Task> currentTasks = context.Tasks
+                .Where(t => t.Deadline <= DateTime.Today.AddDays(10))
+                .ToList();
+
+            foreach (Task task in currentTasks)
+            {
+                TaskViewModel view = new TaskViewModel();
+
+                view.Name = task.Name;
+                view.Dateline = task.Deadline;
+                view.Description = task.Description;
+                view.Type = task.Type.Name;
+                
+                views.Add(view);
+            }
+
+            return views;
         }
 
-        public ICollection<TaskViewModel> GetGoals(DateTime date)
+        public ICollection<TaskViewModel> GetGoals()
         {
-            throw new NotImplementedException();
-            //TODO
+            List<TaskViewModel> views = new List<TaskViewModel>();
+
+            foreach(Goal goal in context.Goals)
+            {
+                TaskViewModel view = new TaskViewModel();
+
+                view.Name = goal.Name;
+                view.Dateline = goal.Deadline;
+                view.Description = goal.Description;
+                view.Type = "Goal";
+
+                views.Add(view);
+            }
+
+            return views;
         }
 
         public ICollection<TaskViewModel> GetAll()
