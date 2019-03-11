@@ -45,6 +45,7 @@
     <Compile Include="DatabaseModels\BaseTask.cs" />
     <Compile Include="DatabaseModels\Goal.cs" />
     <Compile Include="DatabaseModels\Task.cs" />
+    <Compile Include="DatabaseModels\TaskType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
   </ItemGroup>

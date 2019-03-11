@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 
 namespace DataStorage
 {
@@ -28,9 +29,10 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetTasks(DateTime date)
         {
+            DateTime deadline = date.AddDays(10);
             List<TaskViewModel> views = new List<TaskViewModel>();
             List<Task> currentTasks = context.Tasks
-                .Where(t => t.Deadline <= DateTime.Today.AddDays(10))
+                .Where(t => t.Deadline <= deadline)
                 .ToList();
 
             foreach (Task task in currentTasks)
@@ -38,10 +40,11 @@ namespace DataStorage
                 TaskViewModel view = new TaskViewModel();
 
                 view.Name = task.Name;
-                view.Dateline = task.Deadline;
+                view.Deadline = task.Deadline;
                 view.Description = task.Description;
                 view.Type = task.Type.Name;
-                
+                view.PicturePath = task.Type.PicturePath;
+
                 views.Add(view);
             }
 
@@ -57,9 +60,10 @@ namespace DataStorage
                 TaskViewModel view = new TaskViewModel();
 
                 view.Name = goal.Name;
-                view.Dateline = goal.Deadline;
+                view.Deadline = goal.Deadline;
                 view.Description = goal.Description;
                 view.Type = "Goal";
+                view.PicturePath = Constants.GoalsIcon;
 
                 views.Add(view);
             }

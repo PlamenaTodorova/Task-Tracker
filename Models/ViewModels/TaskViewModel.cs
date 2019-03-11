@@ -11,7 +11,7 @@ namespace Models.ViewModels
 
         public string PicturePath { get; set; }
 
-        public DateTime Dateline { get; set; }
+        public DateTime Deadline { get; set; }
 
         public string Description { get; set; }
     }
