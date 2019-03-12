@@ -47,12 +47,12 @@
 
                                 <StackPanel Margin="15"
                                     Grid.Column="0">
-                                    <Image Source="../Icons/task.png"/>
+                                    <Image Source="{Binding PicturePath}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock FontSize="25" 
-                                       Text="Exam"/>
+                                       Text="{Binding Name}"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -61,23 +61,30 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
+                                            <RowDefinition/>
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Column="0"
                                            Grid.Row="0"
-                                           Text="Type: "/>
+                                           Text="Deadline: "/>
                                         <TextBlock Grid.Column="1"
                                            Grid.Row="0"
-                                           Text="School"/>
+                                           Text="{Binding Deadline}"/>
                                         <TextBlock Grid.Column="0"
                                            Grid.Row="1"
+                                           Text="Type: "/>
+                                        <TextBlock Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding Type}"/>
+                                        <TextBlock Grid.Column="0"
+                                           Grid.Row="2"
                                            Text="Description: "/>
                                         <WrapPanel Grid.Column="1"
-                                           Grid.Row="1"
+                                           Grid.Row="2"
                                            Orientation="Horizontal">
                                             <TextBlock Margin="5 0"
                                                TextWrapping="Wrap"
-                                               Text="I have a test"/>
+                                               Text="{Binding Description}"/>
                                         </WrapPanel>
                                     </Grid>
 
@@ -130,12 +137,12 @@
 
                                 <StackPanel Margin="15"
                                     Grid.Column="0">
-                                    <Image Source="../Icons/goal.png"/>
+                                    <Image Source="{Binding PicturePath}"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock FontSize="25" 
-                                       Text="Read one chapter a day"/>
+                                       Text="{Binding Name}"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -151,7 +158,7 @@
                                            Text="Deadline: "/>
                                         <TextBlock Grid.Column="1"
                                            Grid.Row="0"
-                                           Text="01/02/2019"/>
+                                           Text="{Binding Deadline}"/>
                                         <TextBlock Grid.Column="0"
                                            Grid.Row="1"
                                            Text="Description: "/>
@@ -160,7 +167,7 @@
                                            Orientation="Horizontal">
                                             <TextBlock Margin="5 0"
                                                TextWrapping="Wrap"
-                                               Text="It's good to keep on reading"/>
+                                               Text="{Binding Description}"/>
                                         </WrapPanel>
                                     </Grid>
 
