@@ -79,8 +79,25 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetAll(object[] filters)
         {
-            throw new NotImplementedException();
-            //TODO
+            List<TaskViewModel> views = new List<TaskViewModel>();
+            List<Task> currentTasks = context.Tasks.ToList();
+
+            foreach (Task task in currentTasks)
+            {
+                TaskViewModel view = new TaskViewModel();
+
+                view.Name = task.Name;
+                view.Deadline = task.Deadline;
+                view.Description = task.Description;
+                view.Type = task.Type.Name;
+                view.PicturePath = task.Type.PicturePath;
+
+                views.Add(view);
+            }
+
+            views.AddRange(this.GetGoals());
+
+            return views;
         }
 
         public TaskBindingModel GetTask(string id)
