@@ -29,7 +29,7 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetTasks(DateTime date)
         {
-            DateTime deadline = date.AddDays(10);
+            DateTime deadline = date.AddDays(Constants.NumberOfDays);
             List<TaskViewModel> views = new List<TaskViewModel>();
             List<Task> currentTasks = context.Tasks
                 .Where(t => t.Deadline <= deadline)
@@ -73,12 +73,6 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetAll()
         {
-            throw new NotImplementedException();
-            //TODO
-        }
-
-        public ICollection<TaskViewModel> GetAll(object[] filters)
-        {
             List<TaskViewModel> views = new List<TaskViewModel>();
             List<Task> currentTasks = context.Tasks.ToList();
 
@@ -100,57 +94,72 @@ namespace DataStorage
             return views;
         }
 
-        public TaskBindingModel GetTask(string id)
+        public ICollection<TaskViewModel> GetAll(object[] filters)
         {
             throw new NotImplementedException();
             //TODO
         }
 
-        public bool Add(string id, TaskBindingModel model)
+        public ICollection<string> GetTypes()
+        {
+            List<string> types = context.Type
+                .Select(e => e.Name)
+                .ToList();
+            types.Add("Goal");
+            return types;
+        }
+
+        public TaskBindingModel GetTask(int id)
         {
             throw new NotImplementedException();
             //TODO
         }
 
-        public bool Change(string id, TaskBindingModel model)
+        public bool Add(TaskBindingModel model)
         {
             throw new NotImplementedException();
             //TODO
         }
 
-        public bool Delete(string id, TaskBindingModel model)
+        public bool Change(int id, TaskBindingModel model)
         {
             throw new NotImplementedException();
             //TODO
         }
 
-        private bool AddTask(string id, TaskBindingModel model)
+        public bool Delete(int id, TaskBindingModel model)
         {
             throw new NotImplementedException();
             //TODO
         }
 
-        private void AddGoal(string id, TaskBindingModel model)
+        private bool AddTask(int id, TaskBindingModel model)
+        {
+            throw new NotImplementedException();
+            //TODO
+        }
+
+        private void AddGoal(int id, TaskBindingModel model)
         {
             //TODO
         }
 
-        private void ChangeTask(string id, TaskBindingModel model)
+        private void ChangeTask(int id, TaskBindingModel model)
         {
             //TODO
         }
 
-        private void ChangeGoal(string id, TaskBindingModel model)
+        private void ChangeGoal(int id, TaskBindingModel model)
         {
             //TODO
         }
 
-        private void DeleteTask(string id, TaskBindingModel model)
+        private void DeleteTask(int id, TaskBindingModel model)
         {
             //TODO
         }
 
-        private void DeleteGoal(string id, TaskBindingModel model)
+        private void DeleteGoal(int id, TaskBindingModel model)
         {
             //TODO
         }

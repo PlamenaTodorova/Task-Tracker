@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataStorage;
+using Models.BindingModels;
+using Models.DatabaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,19 @@ namespace Interface.Dialogs
     /// </summary>
     public partial class NewTaskDialog : Window
     {
+        private TaskBindingModel model;
+
         public NewTaskDialog()
         {
             InitializeComponent();
+            this.type.ItemsSource = Engin.GetEngin().GetTypes();
+            this.model = new TaskBindingModel();
+            this.DataContext = model;
+        }
+
+        public TaskBindingModel GetTask()
+        {
+            return this.model;
         }
 
         private void MinimizeWindow(object sender, RoutedEventArgs e)
@@ -32,6 +45,21 @@ namespace Interface.Dialogs
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void CheckType(object sender, SelectionChangedEventArgs e)
+        {
+            if(this.type.SelectedValue.ToString() == "Goal")
+            {
+                MessageBox.Show(this.type.SelectedValue.ToString());
+                this.deadline.IsEnabled = false;
+                this.period.IsEnabled = true;
+            }
+            else
+            {
+                this.deadline.IsEnabled = true;
+                this.period.IsEnabled = false;
+            }
         }
     }
 }

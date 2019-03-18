@@ -31,12 +31,12 @@ namespace Interface.Controllers
             return goals;
         }
 
-        public bool ChangeTask(string id, TaskBindingModel model)
+        public bool ChangeTask(int id, TaskBindingModel model)
         {
             return Engin.GetEngin().Change(id, model);
         }
 
-        public bool DeleteTask(string id, TaskBindingModel model)
+        public bool DeleteTask(int id, TaskBindingModel model)
         {
             return Engin.GetEngin().Change(id, model);
         }

@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AllTaskController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OneDayController.cs" />
     <Compile Include="Controllers\ShowTaskController.cs" />
     <Compile Include="Dialogs\NewTaskDialog.xaml.cs">

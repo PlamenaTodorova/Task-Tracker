@@ -15,6 +15,8 @@ namespace DataStorage
         //Main
         public IDbSet<Task> Tasks { get; set; }
         public IDbSet<Goal> Goals { get; set; }
-        //public IDbSet<Task> Finished { get; set; }
+        
+        //Additional
+        public IDbSet<TaskType> Type { get; set; }
     }
 }

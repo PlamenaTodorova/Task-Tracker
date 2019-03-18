@@ -12,7 +12,7 @@ namespace Models.BindingModels
     {
         private string name;
         private DateTime deadline;
-        private TaskType taskType;
+        private string taskType;
         private Periods period;
         private string description;
 
@@ -42,7 +42,7 @@ namespace Models.BindingModels
             }
         }
 
-        public TaskType TaskType
+        public string TaskType
         {
             get { return this.taskType; }
             set

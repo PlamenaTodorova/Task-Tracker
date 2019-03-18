@@ -8,5 +8,6 @@
         public static string FinishedFile = @".\Tasks\finished.json";
 
         public static string GoalsIcon = @"../Icons/goal.png";
+        public static int NumberOfDays = 10;
     }
 }
