@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface.Dialogs"
+        xmlns:utilitie= "clr-namespace:Interface.Utilities"
+        xmlns:models="clr-namespace:Models.DatabaseModels;assembly=Models"
         mc:Ignorable="d"
         Height="450" Width="800"
             WindowStyle="None"
@@ -56,7 +58,7 @@
                                Margin="10 0"/>
                     </Button>
                     <Button Style="{StaticResource ImageButtonStyle}"
-                            Click="CloseWindow">
+                            IsCancel="True">
                         <Image Source="../Icons/close.png"
                                Margin="10 0 0 0"/>
                     </Button>
@@ -77,29 +79,38 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.Resources>
-                    <Style TargetType="TextBlock">
+                    <Style TargetType="TextBlock" x:Key="MenuStyle">
                         <Setter Property="FontSize" Value="25"/>
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="HorizontalAlignment" Value="Right"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="Margin" Value="0 0 15 0"/>
                     </Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
                 </Grid.Resources>
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="0"
+                           Style="{StaticResource MenuStyle}"
                            Text="Name:"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="1"
+                           Style="{StaticResource MenuStyle}"
                            Text="Type:"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="2"
+                           Style="{StaticResource MenuStyle}"
                            Text="Deadline:"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="3"
+                           Style="{StaticResource MenuStyle}"
                            Text="Period:"/>
                 <TextBlock Grid.Column="0"
                            Grid.Row="4"
+                           Style="{StaticResource MenuStyle}"
                            Text="Description:"/>
                 <Rectangle Grid.Column="1"
                            Grid.RowSpan="5"
@@ -124,7 +135,8 @@
                           Name="period"
                           Margin="15 15 30 15"
                           IsEnabled="False"
-                          SelectedValue="{Binding Period}"/>
+                          SelectedValue="{Binding Period}"
+                          ItemsSource="{Binding Source={utilitie:EnumBindingSource {x:Type models:Periods}}}"/>
                 <TextBox Grid.Row="4"
                          Grid.Column="1"
                          Margin="15 15 30 15"
@@ -140,12 +152,14 @@
                             FontSize="25"
                             FontWeight="DemiBold"
                             Background="#fffdd0"
-                            Margin="0 0 15 0"/>
+                            Margin="0 0 15 0"
+                            Click="SaveButton"/>
                     <Button Content="Close"
                             Padding="25 0"
                             FontWeight="DemiBold"
                             Background="#fffdd0"
-                            FontSize="25"/>
+                            FontSize="25"
+                            IsCancel="True"/>
                 </StackPanel>
             </Grid>
         </Grid>

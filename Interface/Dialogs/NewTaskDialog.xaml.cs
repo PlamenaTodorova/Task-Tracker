@@ -42,16 +42,24 @@ namespace Interface.Dialogs
             this.WindowState = WindowState.Minimized;
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void SaveButton(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = true;
+        }
+
+        private bool IsValid()
+        {
+            if (model.Name != null && model.Name != "")
+            {
+                return true;
+            }
+            return false;
         }
 
         private void CheckType(object sender, SelectionChangedEventArgs e)
         {
             if(this.type.SelectedValue.ToString() == "Goal")
             {
-                MessageBox.Show(this.type.SelectedValue.ToString());
                 this.deadline.IsEnabled = false;
                 this.period.IsEnabled = true;
             }
