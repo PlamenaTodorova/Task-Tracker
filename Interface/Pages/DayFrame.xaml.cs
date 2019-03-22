@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,29 +21,30 @@ namespace Interface.Pages
     /// </summary>
     public partial class DayFrame : Page
     {
-        DateTime date;
+        DateViewModel date;
 
         public DayFrame()
         {
             InitializeComponent();
-            this.date = DateTime.Today;
+            this.date = new DateViewModel();
+            this.DataContext = date;
             this.ChangeFrame();
         }
 
         private void ChangeFrame()
         {
-            this.frameHolder.Navigate(new OneDay(date));
+            this.frameHolder.Navigate(new OneDay(date.Current));
         }
 
         private void MoveBack(object sender, RoutedEventArgs e)
         {
-            this.date = this.date.AddDays(-1);
+            this.date.AddDays(-1);
             this.ChangeFrame();
         }
 
         private void MoveForward(object sender, RoutedEventArgs e)
         {
-            this.date = this.date.AddDays(1);
+            this.date.AddDays(1);
             this.ChangeFrame();
         }
 
