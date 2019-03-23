@@ -14,9 +14,11 @@ namespace Interface.Controllers
     {
         protected ObservableCollection<TaskViewModel> tasks;
         private ObservableCollection<TaskViewModel> goals;
+        protected DateTime date;
 
-        public ShowTaskController()
+        public ShowTaskController(DateTime date)
         {
+            this.date = date;
             GenerateTasks();
             GenerataGoals();
         }
@@ -45,7 +47,7 @@ namespace Interface.Controllers
 
         private void GenerataGoals()
         {
-            List<TaskViewModel> goals = Engin.GetEngin().GetGoals().ToList();
+            List<TaskViewModel> goals = Engin.GetEngin().GetGoals(this.date).ToList();
             this.goals = new ObservableCollection<TaskViewModel>(goals);
         }
     }

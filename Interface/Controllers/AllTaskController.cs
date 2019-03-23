@@ -11,6 +11,11 @@ namespace Interface.Controllers
 {
     internal class AllTaskController : ShowTaskController
     {
+        public AllTaskController() 
+            : base(DateTime.Today)
+        {
+        }
+
         protected override void GenerateTasks()
         {
             List<TaskViewModel> tasks = Engin.GetEngin().GetAll().ToList();

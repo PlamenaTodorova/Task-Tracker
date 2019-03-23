@@ -11,16 +11,14 @@ namespace Interface.Controllers
 {
     internal class OneDayController : ShowTaskController
     {
-        private DateTime date;
-
         public OneDayController(DateTime date)
+            :base(date)
         {
-            this.date = date;
         }
 
         protected override void GenerateTasks()
         {
-            List<TaskViewModel> tasks = Engin.GetEngin().GetTasks(date).ToList();
+            List<TaskViewModel> tasks = Engin.GetEngin().GetTasks(this.date).ToList();
             this.tasks = new ObservableCollection<TaskViewModel>(tasks);
         }
     }

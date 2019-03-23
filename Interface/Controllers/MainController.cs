@@ -10,9 +10,9 @@ namespace Interface.Controllers
 {
     public class MainController
     {
-        public bool AddTask(TaskBindingModel model)
+        public void AddTask(TaskBindingModel model)
         {
-            return Engin.GetEngin().Add(model);
+            Engin.GetEngin().Add(model);
         }
     }
 }

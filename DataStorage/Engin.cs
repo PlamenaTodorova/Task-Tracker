@@ -51,7 +51,7 @@ namespace DataStorage
             return views;
         }
 
-        public ICollection<TaskViewModel> GetGoals()
+        public ICollection<TaskViewModel> GetGoals(DateTime date)
         {
             List<TaskViewModel> views = new List<TaskViewModel>();
 
@@ -60,7 +60,7 @@ namespace DataStorage
                 TaskViewModel view = new TaskViewModel();
 
                 view.Name = goal.Name;
-                view.Deadline = goal.Deadline;
+                view.Deadline = goal.RecalculateDate(date);
                 view.Description = goal.Description;
                 view.Type = "Goal";
                 view.PicturePath = Constants.GoalsIcon;
@@ -89,7 +89,7 @@ namespace DataStorage
                 views.Add(view);
             }
 
-            views.AddRange(this.GetGoals());
+            views.AddRange(this.GetGoals(DateTime.Today));
 
             return views;
         }
@@ -115,10 +115,11 @@ namespace DataStorage
             //TODO
         }
 
-        public bool Add(TaskBindingModel model)
+        public void Add(TaskBindingModel model)
         {
-            throw new NotImplementedException();
-            //TODO
+            if (model.TaskType == "Goal")
+                this.AddGoal(model);
+            else this.AddTask(model);
         }
 
         public bool Change(int id, TaskBindingModel model)
@@ -133,15 +134,36 @@ namespace DataStorage
             //TODO
         }
 
-        private bool AddTask(int id, TaskBindingModel model)
+        private void AddTask(TaskBindingModel model)
         {
-            throw new NotImplementedException();
-            //TODO
+            Task task = new Task()
+            {
+                Name = model.Name,
+                Deadline = model.Deadline,
+                Description = model.Description,
+                Type = context.Type.FirstOrDefault(e => e.Name == model.TaskType)
+            };
+
+            context.Tasks.Add(task);
+            context.SaveChanges();
         }
 
-        private void AddGoal(int id, TaskBindingModel model)
+        private void AddGoal(TaskBindingModel model)
         {
-            //TODO
+            Goal goal = new Goal()
+            {
+                Name = model.Name,
+                Span = model.Period,
+                Description = model.Description,
+            };
+
+            DateTime tomorrow = DateTime.Today.AddDays(1);
+            goal.Deadline = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 0, 0, 0);
+
+            goal.RescheduleGoal();
+
+            context.Goals.Add(goal);
+            context.SaveChanges();
         }
 
         private void ChangeTask(int id, TaskBindingModel model)

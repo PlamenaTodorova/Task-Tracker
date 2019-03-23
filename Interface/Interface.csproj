@@ -62,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\EnumBindingSourceExtension.cs" />
+    <Compile Include="Utilities\EnumDescriptionTypeConverter.cs" />
     <Page Include="Dialogs\NewTaskDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,7 +152,7 @@
     <Resource Include="Icons\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\task.png" />
+    <Resource Include="Icons\apointment.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\plus.png" />
@@ -171,6 +173,13 @@
       <Project>{98CD6092-4116-4B31-B1D6-6534260A4A05}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\me.png" />
+    <Resource Include="Icons\school.png" />
+    <Resource Include="Icons\social.png" />
+    <Resource Include="Icons\task.png" />
+    <Resource Include="Icons\work.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

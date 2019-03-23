@@ -9,6 +9,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        Icon="Icons/logo.png"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">

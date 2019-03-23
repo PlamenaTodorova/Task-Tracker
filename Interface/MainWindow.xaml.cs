@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Interface.Controllers;
 using Interface.Dialogs;
 using Interface.Pages;
 
@@ -22,10 +23,13 @@ namespace Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainController controller;
+
         public MainWindow()
         {
             InitializeComponent();
             this.PageHolder.Navigate(new DayFrame());
+            controller = new MainController();
         }
 
         private void MinimizeWindow(object sender, RoutedEventArgs e)
@@ -48,6 +52,11 @@ namespace Interface
             NewTaskDialog newTask = new NewTaskDialog();
 
             newTask.ShowDialog();
+
+            if (newTask.DialogResult == true)
+            {
+                controller.AddTask(newTask.GetTask());
+            }
         }
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
