@@ -18,7 +18,7 @@
                    FontSize="30"
                    HorizontalAlignment="Center"
                    Background="Transparent"/>
-            
+
             <ItemsControl Name="tasks"
                           Margin="0 0 0 25">
                 <ItemsControl.ItemTemplate>
@@ -35,7 +35,7 @@
                                 <Setter Property="FontSize" Value="18"/>
                             </Style>
                         </DataTemplate.Resources>
-                        
+
                         <Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -45,6 +45,10 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
+                                <TextBlock Name="Id"
+                                           Visibility="Collapsed"
+                                           Text="{Binding Id}"/>
+                                
                                 <StackPanel Margin="15"
                                     Grid.Column="0">
                                     <Image Source="{Binding PicturePath}"/>
@@ -91,10 +95,17 @@
                                 </StackPanel>
 
                                 <Button Grid.Column="2" 
-                                Background="Transparent"
-                                BorderThickness="0"
-                                FontSize="35"
-                                Content="&#10003;"/>
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="35"
+                                        Content="&#10003;"
+                                        Click="Check">
+                                    <Button.Tag>
+                                        <MultiBinding StringFormat="Task:{}">
+                                            <Binding Path="Id"/>
+                                        </MultiBinding>
+                                    </Button.Tag>
+                                </Button>
 
                                 <StackPanel Grid.Column="3"
                                     VerticalAlignment="Center">
@@ -148,6 +159,9 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
+                                <TextBlock Name="Id"
+                                           Visibility="Collapsed"
+                                           Text="{Binding Id}"/>
                                 <StackPanel Margin="15"
                                     Grid.Column="0">
                                     <Image Source="{Binding PicturePath}"/>
@@ -187,10 +201,12 @@
                                 </StackPanel>
 
                                 <Button Grid.Column="2" 
-                                Background="Transparent"
-                                BorderThickness="0"
-                                FontSize="35"
-                                Content="&#10003;"/>
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="35"
+                                        Content="&#10003;"
+                                        Click="Check"/>
+
 
                                 <StackPanel Grid.Column="3"
                                 VerticalAlignment="Center">

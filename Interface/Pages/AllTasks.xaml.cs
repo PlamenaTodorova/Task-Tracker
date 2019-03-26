@@ -34,5 +34,12 @@ namespace Interface.Pages
             this.tasks.ItemsSource = collection;
             this.tasks_existance.Visibility = collection.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
+
+        public void Check(object sender, RoutedEventArgs e)
+        {
+            string id = ((TextBlock)((Grid)((Button)sender).Parent).FindName("Id")).Text;
+
+            controller.Check(id);
+        }
     }
 }

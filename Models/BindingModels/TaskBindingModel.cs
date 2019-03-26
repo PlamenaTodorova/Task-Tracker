@@ -16,6 +16,11 @@ namespace Models.BindingModels
         private Periods period;
         private string description;
 
+        public TaskBindingModel()
+        {
+            this.deadline = DateTime.Today;
+        }
+
         public string Name
         {
             get { return this.name; }

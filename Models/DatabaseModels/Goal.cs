@@ -24,10 +24,7 @@ namespace Models.DatabaseModels
 
         public void RescheduleGoal()
         {
-            while (this.Deadline > DateTime.Today)
-            {
-                this.Deadline = this.Recalculate(this.Deadline);
-            }
+            this.Deadline = this.Recalculate(this.Deadline);
         }
 
         public DateTime RecalculateDate(DateTime current)

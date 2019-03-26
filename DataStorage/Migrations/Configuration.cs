@@ -12,41 +12,42 @@ namespace DataStorage.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TaskContext context)
         {
-            context.Type.AddOrUpdate(new TaskType()
+            context.Type.AddOrUpdate(e => e.Name, 
+            new TaskType()
             {
                     Name = "Task",
                     Id = 1,
                     PicturePath = "../Icons/task.png"
-            });
-            context.Type.AddOrUpdate(new TaskType()
+            },
+            new TaskType()
             {
                 Name = "Work",
                 Id = 2,
                 PicturePath = "../Icons/work.png"
-            });
-            context.Type.AddOrUpdate(new TaskType()
+            },
+            new TaskType()
             {
                 Name = "Social",
                 Id = 3,
                 PicturePath = "../Icons/social.png"
-            });
-            context.Type.AddOrUpdate(new TaskType()
+            },
+            new TaskType()
             {
                 Name = "Me",
                 Id = 4,
                 PicturePath = "../Icons/me.png"
-            });
-            context.Type.AddOrUpdate(new TaskType()
+            },
+            new TaskType()
             {
                 Name = "Apointment",
                 Id = 5,
                 PicturePath = "../Icons/apointment.png"
             });
-            context.SaveChanges();
         }
     }
 }

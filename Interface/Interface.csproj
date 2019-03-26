@@ -173,6 +173,10 @@
       <Project>{98CD6092-4116-4B31-B1D6-6534260A4A05}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{D2719EF0-BDE4-4443-B3AD-0F68329AA8AC}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\me.png" />

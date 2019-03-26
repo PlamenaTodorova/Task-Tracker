@@ -7,13 +7,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace Interface.Controllers
 {
     internal abstract class ShowTaskController
     {
         protected ObservableCollection<TaskViewModel> tasks;
-        private ObservableCollection<TaskViewModel> goals;
+        protected ObservableCollection<TaskViewModel> goals;
         protected DateTime date;
 
         public ShowTaskController(DateTime date)
@@ -33,6 +34,20 @@ namespace Interface.Controllers
             return goals;
         }
 
+        public void Check(string id)
+        {
+            string[] data = id.Split(':').ToArray();
+            TaskViewModel model = data[1] == "Goal" ?
+                goals.FirstOrDefault(e => e.Id == id) : tasks.FirstOrDefault(e => e.Id == id);
+
+            model.Deadline = Engin.GetEngin().Check(int.Parse(data[0]), model);
+            
+            if (data[1] == "Goal")
+                ReAddGoal(model);
+            else
+                HelperFunctions.RemoveElement<TaskViewModel>(tasks, model);
+        }
+
         public bool ChangeTask(int id, TaskBindingModel model)
         {
             return Engin.GetEngin().Change(id, model);
@@ -44,6 +59,8 @@ namespace Interface.Controllers
         }
 
         protected abstract void GenerateTasks();
+
+        protected abstract void ReAddGoal(TaskViewModel model);
 
         private void GenerataGoals()
         {

@@ -32,13 +32,14 @@ namespace DataStorage
             DateTime deadline = date.AddDays(Constants.NumberOfDays);
             List<TaskViewModel> views = new List<TaskViewModel>();
             List<Task> currentTasks = context.Tasks
-                .Where(t => t.Deadline <= deadline)
+                .Where(t => t.Deadline <= deadline && t.Deadline >= date && !t.IsFinished)
                 .ToList();
 
             foreach (Task task in currentTasks)
             {
                 TaskViewModel view = new TaskViewModel();
 
+                view.Id = task.Id.ToString() + ":" + task.Type.Name;
                 view.Name = task.Name;
                 view.Deadline = task.Deadline;
                 view.Description = task.Description;
@@ -59,6 +60,7 @@ namespace DataStorage
             {
                 TaskViewModel view = new TaskViewModel();
 
+                view.Id = goal.Id.ToString() + ":Goal";
                 view.Name = goal.Name;
                 view.Deadline = goal.RecalculateDate(date);
                 view.Description = goal.Description;
@@ -74,12 +76,15 @@ namespace DataStorage
         public ICollection<TaskViewModel> GetAll()
         {
             List<TaskViewModel> views = new List<TaskViewModel>();
-            List<Task> currentTasks = context.Tasks.ToList();
+            List<Task> currentTasks = context.Tasks
+                .Where(t => t.Deadline >= DateTime.Today && !t.IsFinished)
+                .ToList();
 
             foreach (Task task in currentTasks)
             {
                 TaskViewModel view = new TaskViewModel();
 
+                view.Id = task.Id.ToString() + ":" + task.Type.Name;
                 view.Name = task.Name;
                 view.Deadline = task.Deadline;
                 view.Description = task.Description;
@@ -134,6 +139,15 @@ namespace DataStorage
             //TODO
         }
 
+        public DateTime Check(int id, TaskViewModel model)
+        {
+            if (model.Type == "Goal")
+                this.CheckGoal(id, model);
+            else this.CheckTask(id);
+
+            return model.Deadline;
+        }
+
         private void AddTask(TaskBindingModel model)
         {
             Task task = new Task()
@@ -184,6 +198,20 @@ namespace DataStorage
         private void DeleteGoal(int id, TaskBindingModel model)
         {
             //TODO
+        }
+
+        private void CheckTask(int id)
+        {
+            context.Tasks.Find(id).IsFinished = true;
+            context.SaveChanges();
+        }
+
+        private void CheckGoal(int id, TaskViewModel model)
+        {
+            Goal goal = context.Goals.Find(id);
+            goal.RescheduleGoal();
+            model.Deadline = goal.Deadline;
+            context.SaveChanges();
         }
     }
 }
