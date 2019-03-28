@@ -133,10 +133,11 @@ namespace DataStorage
             //TODO
         }
 
-        public bool Delete(int id, TaskBindingModel model)
+        public void Delete(int id, string type)
         {
-            throw new NotImplementedException();
-            //TODO
+            if (type == "Goal")
+                this.DeleteGoal(id);
+            else this.DeleteTask(id);
         }
 
         public DateTime Check(int id, TaskViewModel model)
@@ -190,14 +191,19 @@ namespace DataStorage
             //TODO
         }
 
-        private void DeleteTask(int id, TaskBindingModel model)
+        private void DeleteTask(int id)
         {
-            //TODO
+            Task toRemove = context.Tasks.Find(id);
+
+            context.Tasks.Remove(toRemove);
+            context.SaveChanges();
         }
 
-        private void DeleteGoal(int id, TaskBindingModel model)
+        private void DeleteGoal(int id)
         {
-            //TODO
+            Goal toRemove = context.Goals.Find(id);
+
+            context.Goals.Remove(toRemove);
         }
 
         private void CheckTask(int id)

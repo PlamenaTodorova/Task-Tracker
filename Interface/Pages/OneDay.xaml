@@ -69,26 +69,26 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Column="0"
-                                           Grid.Row="0"
-                                           Text="Deadline: "/>
+                                                   Grid.Row="0"
+                                                   Text="Deadline: "/>
                                         <TextBlock Grid.Column="1"
-                                           Grid.Row="0"
-                                           Text="{Binding Deadline, StringFormat=d, ConverterCulture=en-GB}"/>
+                                                   Grid.Row="0"
+                                                   Text="{Binding Deadline, StringFormat=d, ConverterCulture=en-GB}"/>
                                         <TextBlock Grid.Column="0"
-                                           Grid.Row="1"
-                                           Text="Type: "/>
+                                                   Grid.Row="1"
+                                                   Text="Type: "/>
                                         <TextBlock Grid.Column="1"
-                                           Grid.Row="1"
-                                           Text="{Binding Type}"/>
+                                                   Grid.Row="1"
+                                                   Text="{Binding Type}"/>
                                         <TextBlock Grid.Column="0"
-                                           Grid.Row="2"
-                                           Text="Description: "/>
+                                                   Grid.Row="2"
+                                                   Text="Description: "/>
                                         <WrapPanel Grid.Column="1"
-                                           Grid.Row="2"
-                                           Orientation="Horizontal">
+                                                   Grid.Row="2"
+                                                   Orientation="Horizontal">
                                             <TextBlock Margin="5 0"
-                                               TextWrapping="Wrap"
-                                               Text="{Binding Description}"/>
+                                                       TextWrapping="Wrap"
+                                                       Text="{Binding Description}"/>
                                         </WrapPanel>
                                     </Grid>
 
@@ -99,25 +99,21 @@
                                         BorderThickness="0"
                                         FontSize="35"
                                         Content="&#10003;"
-                                        Click="Check">
-                                    <Button.Tag>
-                                        <MultiBinding StringFormat="Task:{}">
-                                            <Binding Path="Id"/>
-                                        </MultiBinding>
-                                    </Button.Tag>
-                                </Button>
+                                        Click="Check"/>
 
                                 <StackPanel Grid.Column="3"
-                                    VerticalAlignment="Center">
+                                            VerticalAlignment="Center">
                                     <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    Content="&#9998;"
-                                    FontSize="20"
-                                    Margin="0 0 0 15"/>
+                                            BorderThickness="0"
+                                            Content="&#9998;"
+                                            FontSize="20"
+                                            Click="Edit"
+                                            Margin="0 0 0 15"/>
                                     <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    FontSize="20"
-                                    Content="&#10008;"/>
+                                            BorderThickness="0"
+                                            FontSize="20"
+                                            Click="Delete"
+                                            Content="&#10008;"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

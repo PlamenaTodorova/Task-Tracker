@@ -41,5 +41,15 @@ namespace Interface.Pages
 
             controller.Check(id);
         }
+
+        public void Edit(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        public void Delete(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

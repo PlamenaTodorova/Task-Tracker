@@ -48,14 +48,24 @@ namespace Interface.Controllers
                 HelperFunctions.RemoveElement<TaskViewModel>(tasks, model);
         }
 
-        public bool ChangeTask(int id, TaskBindingModel model)
+        public void ChangeTask(int id, TaskBindingModel model)
         {
-            return Engin.GetEngin().Change(id, model);
+            
         }
 
-        public bool DeleteTask(int id, TaskBindingModel model)
+        public void DeleteTask(string idAndType)
         {
-            return Engin.GetEngin().Change(id, model);
+            string[] data = idAndType.Split(':').ToArray();
+            int id = int.Parse(data[0]);
+            string type = data[1];
+
+            Engin.GetEngin().Delete(id, type);
+
+            TaskViewModel model = data[1] == "Goal" ?
+                goals.FirstOrDefault(e => e.Id == idAndType) : tasks.FirstOrDefault(e => e.Id == idAndType);
+
+            HelperFunctions.RemoveElement<TaskViewModel>(goals, model);
+            HelperFunctions.RemoveElement<TaskViewModel>(tasks, model);
         }
 
         protected abstract void GenerateTasks();
