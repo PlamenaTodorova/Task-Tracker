@@ -30,9 +30,8 @@ namespace Interface.Pages
             InitializeComponent();
             this.controller = new AllTaskController();
 
-            ObservableCollection<TaskViewModel> collection = this.controller.GetTasks();
-            this.tasks.ItemsSource = collection;
-            this.tasks_existance.Visibility = collection.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            this.tasks.ItemsSource = this.controller.GetTasks();
+            this.SetEmptyFields();
         }
 
         public void Check(object sender, RoutedEventArgs e)
@@ -49,7 +48,15 @@ namespace Interface.Pages
 
         public void Delete(object sender, RoutedEventArgs e)
         {
-            
+            string id = ((TextBlock)((Grid)((StackPanel)((Button)sender).Parent).Parent).FindName("Id")).Text;
+
+            controller.DeleteTask(id);
+            this.SetEmptyFields();
+        }
+
+        private void SetEmptyFields()
+        {
+            this.tasks_existance.Visibility = this.tasks.ItemsSource.OfType<object>().Count() == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
