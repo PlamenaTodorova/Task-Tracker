@@ -15,8 +15,21 @@ namespace DataStorage
         //Main
         public IDbSet<Task> Tasks { get; set; }
         public IDbSet<Goal> Goals { get; set; }
-        
+
         //Additional
         public IDbSet<TaskType> Type { get; set; }
+
+        internal void RecalculateGoalsDates()
+        {
+            foreach (Goal goal in Goals)
+            {
+                while (goal.Deadline < DateTime.Today)
+                {
+                    goal.RescheduleGoal();
+                }
+
+                SaveChanges();
+            }
+        }
     }
 }

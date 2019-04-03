@@ -49,7 +49,8 @@ namespace Interface.Dialogs
 
         private bool IsValid()
         {
-            if (model.Name != null && model.Name != "")
+            if (model.Name != null && model.Name != "" 
+                && model.TaskType != null && model.TaskType != "")
             {
                 return true;
             }

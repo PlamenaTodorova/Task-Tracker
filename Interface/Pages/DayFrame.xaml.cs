@@ -44,8 +44,11 @@ namespace Interface.Pages
 
         private void MoveForward(object sender, RoutedEventArgs e)
         {
-            this.date.AddDays(1);
-            this.ChangeFrame();
+            if (this.date.Current < DateTime.Today)
+            {
+                this.date.AddDays(1);
+                this.ChangeFrame();
+            }
         }
 
     }

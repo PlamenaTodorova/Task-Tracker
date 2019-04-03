@@ -17,6 +17,7 @@ namespace DataStorage
         private Engin()
         {
             this.context = new TaskContext();
+            this.context.RecalculateGoalsDates();
         }
 
         public static Engin GetEngin()
@@ -154,7 +155,7 @@ namespace DataStorage
             Task task = new Task()
             {
                 Name = model.Name,
-                Deadline = model.Deadline,
+                Deadline = new DateTime(model.Deadline.Year, model.Deadline.Month, model.Deadline.Day, 23, 59, 59),
                 Description = model.Description,
                 Type = context.Type.FirstOrDefault(e => e.Name == model.TaskType)
             };
@@ -168,13 +169,11 @@ namespace DataStorage
             Goal goal = new Goal()
             {
                 Name = model.Name,
+                Deadline = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59),
                 Span = model.Period,
                 Description = model.Description,
             };
-
-            DateTime tomorrow = DateTime.Today.AddDays(1);
-            goal.Deadline = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 0, 0, 0);
-
+            
             goal.RescheduleGoal();
 
             context.Goals.Add(goal);

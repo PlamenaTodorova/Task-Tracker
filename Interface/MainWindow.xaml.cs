@@ -57,6 +57,8 @@ namespace Interface
             {
                 controller.AddTask(newTask.GetTask());
             }
+
+            this.PageHolder.Navigate(new DayFrame());
         }
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
