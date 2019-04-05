@@ -18,6 +18,7 @@ namespace DataStorage
         {
             this.context = new TaskContext();
             this.context.RecalculateGoalsDates();
+            this.context.SaveChanges();
         }
 
         public static Engin GetEngin()

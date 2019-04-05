@@ -27,8 +27,6 @@ namespace DataStorage
                 {
                     goal.RescheduleGoal();
                 }
-
-                SaveChanges();
             }
         }
     }
