@@ -63,7 +63,7 @@ namespace Interface
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
         {
-            this.PageHolder.Navigate(new AllTasks());
+            this.PageHolder.Navigate(new Filters());
         }
     }
 }
