@@ -75,36 +75,39 @@ namespace DataStorage
             return views;
         }
 
-        public ICollection<TaskViewModel> GetAll()
+        public ICollection<TaskViewModel> GetAll(ICollection<TypeBindingModel> chosen)
         {
-            List<TaskViewModel> views = new List<TaskViewModel>();
-            List<Task> currentTasks = context.Tasks
-                .Where(t => t.Deadline >= DateTime.Today && !t.IsFinished)
+            List<int> indexes = chosen
+                .Where(e => e.Chosen)
+                .Select(e => e.Id)
                 .ToList();
 
-            foreach (Task task in currentTasks)
+            List<Task> tasks = context.Tasks
+                .Where(e => indexes.Contains(e.Type.Id) && e.IsFinished == false)
+                .ToList();
+
+            List<TaskViewModel> views = this.GetAll(tasks);
+
+            if (indexes.Contains(-1))
             {
-                TaskViewModel view = new TaskViewModel();
-
-                view.Id = task.Id.ToString() + ":" + task.Type.Name;
-                view.Name = task.Name;
-                view.Deadline = task.Deadline;
-                view.Description = task.Description;
-                view.Type = task.Type.Name;
-                view.PicturePath = task.Type.PicturePath;
-
-                views.Add(view);
+                views.AddRange(this.GetGoals(DateTime.Today));
             }
-
-            views.AddRange(this.GetGoals(DateTime.Today));
 
             return views;
         }
 
-        public ICollection<TaskViewModel> GetAll(object[] filters)
+        public ICollection<TypeBindingModel> GetAllTypes()
         {
-            throw new NotImplementedException();
-            //TODO
+            List<TypeBindingModel> bind = new List<TypeBindingModel>();
+
+            foreach (TaskType type in context.Type)
+            {
+                bind.Add(new TypeBindingModel(type.Name, type.Id));
+            }
+
+            bind.Add(new TypeBindingModel("Goal", -1));
+
+            return bind;
         }
 
         public ICollection<string> GetTypes()
@@ -149,6 +152,27 @@ namespace DataStorage
             else this.CheckTask(id);
 
             return model.Deadline;
+        }
+
+        private List<TaskViewModel> GetAll(List<Task> currentTasks)
+        {
+            List<TaskViewModel> views = new List<TaskViewModel>();
+
+            foreach (Task task in currentTasks)
+            {
+                TaskViewModel view = new TaskViewModel();
+
+                view.Id = task.Id.ToString() + ":" + task.Type.Name;
+                view.Name = task.Name;
+                view.Deadline = task.Deadline;
+                view.Description = task.Description;
+                view.Type = task.Type.Name;
+                view.PicturePath = task.Type.PicturePath;
+
+                views.Add(view);
+            }
+
+            return views;
         }
 
         private void AddTask(TaskBindingModel model)

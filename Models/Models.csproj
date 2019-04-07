@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingModels\TaskBindingModel.cs" />
+    <Compile Include="BindingModels\TypeBindingModel.cs" />
     <Compile Include="DatabaseModels\BaseTask.cs" />
     <Compile Include="DatabaseModels\Goal.cs" />
     <Compile Include="DatabaseModels\Task.cs" />

@@ -22,9 +22,8 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Margin="5"
-                                  IsChecked="{Binding Checked}"
-                                  HorizontalAlignment="Center"
+                        <CheckBox Margin="25 0"
+                                  IsChecked="{Binding Chosen}"
                                   VerticalAlignment="Center">
                             <TextBlock Text="{Binding Name}"/>
                         </CheckBox>

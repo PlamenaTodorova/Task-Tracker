@@ -16,12 +16,19 @@ namespace Interface.Controllers
         protected ObservableCollection<TaskViewModel> tasks;
         protected ObservableCollection<TaskViewModel> goals;
         protected DateTime date;
+        protected ICollection<TypeBindingModel> model;
 
-        public ShowTaskController(DateTime date)
+        public ShowTaskController(DateTime date, ICollection<TypeBindingModel> model) 
         {
             this.date = date;
+            this.model = model;
             GenerateTasks();
             GenerataGoals();
+        }
+
+        public ShowTaskController(DateTime date)
+            :this(date, null)
+        {
         }
 
         public ObservableCollection<TaskViewModel> GetTasks()

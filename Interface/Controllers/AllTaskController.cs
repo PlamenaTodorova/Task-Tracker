@@ -1,4 +1,5 @@
 ﻿using DataStorage;
+using Models.BindingModels;
 using Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,14 @@ namespace Interface.Controllers
 {
     internal class AllTaskController : ShowTaskController
     {
-        public AllTaskController() 
-            : base(DateTime.Today)
+        public AllTaskController(ICollection<TypeBindingModel> model) 
+            : base(DateTime.Today, model)
         {
         }
 
         protected override void GenerateTasks()
         {
-            List<TaskViewModel> tasks = Engin.GetEngin().GetAll().ToList();
+            List<TaskViewModel> tasks = Engin.GetEngin().GetAll(this.model).ToList();
             this.tasks = new ObservableCollection<TaskViewModel>(tasks);
         }
 

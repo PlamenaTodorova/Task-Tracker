@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DataStorage;
+using Models.BindingModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +23,13 @@ namespace Interface.Pages
     /// </summary>
     public partial class Filters : Page
     {
+        private ObservableCollection<TypeBindingModel> models;
         public Filters()
         {
+            models = new ObservableCollection<TypeBindingModel>(Engin.GetEngin().GetAllTypes());
             InitializeComponent();
-
-            this.allTask.Navigate(new AllTasks());
+            this.filters.ItemsSource = models;
+            this.allTask.Navigate(new AllTasks(models));
         }
     }
 }

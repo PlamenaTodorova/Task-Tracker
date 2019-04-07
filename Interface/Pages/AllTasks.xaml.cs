@@ -1,4 +1,5 @@
 ﻿using Interface.Controllers;
+using Models.BindingModels;
 using Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,10 @@ namespace Interface.Pages
     {
         private AllTaskController controller;
 
-        public AllTasks()
+        public AllTasks(ICollection<TypeBindingModel> model)
         {
             InitializeComponent();
-            this.controller = new AllTaskController();
+            this.controller = new AllTaskController(model);
 
             this.tasks.ItemsSource = this.controller.GetTasks();
             this.SetEmptyFields();
