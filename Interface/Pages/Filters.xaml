@@ -1,4 +1,4 @@
-﻿<Page x:Class="Interface.Pages.Filters"
+﻿ <Page x:Class="Interface.Pages.Filters"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,7 +24,8 @@
                     <DataTemplate>
                         <CheckBox Margin="25 0"
                                   IsChecked="{Binding Chosen}"
-                                  VerticalAlignment="Center">
+                                  VerticalAlignment="Center"
+                                  Click="ChangeSettings">
                             <TextBlock Text="{Binding Name}"/>
                         </CheckBox>
                     </DataTemplate>

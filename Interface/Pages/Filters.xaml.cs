@@ -29,6 +29,16 @@ namespace Interface.Pages
             models = new ObservableCollection<TypeBindingModel>(Engin.GetEngin().GetAllTypes());
             InitializeComponent();
             this.filters.ItemsSource = models;
+            this.NavigatePage();
+        }
+
+        private void ChangeSettings(object sender, RoutedEventArgs e)
+        {
+            this.NavigatePage();
+        }
+
+        private void NavigatePage()
+        {
             this.allTask.Navigate(new AllTasks(models));
         }
     }
