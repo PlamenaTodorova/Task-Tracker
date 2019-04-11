@@ -41,11 +41,16 @@ namespace Interface.Controllers
             return goals;
         }
 
+        public TaskBindingModel GetBinding(string idAndType)
+        {
+            string[] data = idAndType.Split(':').ToArray();
+            return Engin.GetEngin().GetTask(int.Parse(data[0]), data[1]);
+        }
+
         public void Check(string id)
         {
             string[] data = id.Split(':').ToArray();
-            TaskViewModel model = data[1] == "Goal" ?
-                goals.FirstOrDefault(e => e.Id == id) : tasks.FirstOrDefault(e => e.Id == id);
+            TaskViewModel model = PickedTask(id);
 
             model.Deadline = Engin.GetEngin().Check(int.Parse(data[0]), model);
             
@@ -55,9 +60,14 @@ namespace Interface.Controllers
                 HelperFunctions.RemoveElement<TaskViewModel>(tasks, model);
         }
 
-        public void ChangeTask(int id, TaskBindingModel model)
+        public void ChangeTask(string idAndType, TaskBindingModel model)
         {
-            
+            this.RemoveModel(idAndType);
+
+            string[] data = idAndType.Split(':').ToArray();
+            TaskViewModel changed = Engin.GetEngin().Change(int.Parse(data[0]), data[1], model);
+
+            this.RaAddModel(changed);
         }
 
         public void DeleteTask(string idAndType)
@@ -68,8 +78,12 @@ namespace Interface.Controllers
 
             Engin.GetEngin().Delete(id, type);
 
-            TaskViewModel model = data[1] == "Goal" ?
-                goals.FirstOrDefault(e => e.Id == idAndType) : tasks.FirstOrDefault(e => e.Id == idAndType);
+            this.RemoveModel(idAndType);
+        }
+
+        private void RemoveModel(string idAndType)
+        {
+            TaskViewModel model = PickedTask(idAndType);
 
             HelperFunctions.RemoveElement<TaskViewModel>(goals, model);
             HelperFunctions.RemoveElement<TaskViewModel>(tasks, model);
@@ -78,6 +92,16 @@ namespace Interface.Controllers
         protected abstract void GenerateTasks();
 
         protected abstract void ReAddGoal(TaskViewModel model);
+
+        protected abstract void RaAddModel(TaskViewModel changed);
+
+        private TaskViewModel PickedTask(string idAndType)
+        {
+            string[] data = idAndType.Split(':').ToArray();
+            return data[1] == "Goal"
+                ? goals.FirstOrDefault(e => e.Id == idAndType)
+                : tasks.FirstOrDefault(e => e.Id == idAndType);
+        }
 
         private void GenerataGoals()
         {

@@ -1,10 +1,10 @@
 ﻿using Models.DatabaseModels;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.BindingModels
 {
@@ -19,6 +19,23 @@ namespace Models.BindingModels
         public TaskBindingModel()
         {
             this.deadline = DateTime.Today;
+        }
+
+        public TaskBindingModel(Goal goal)
+        {
+            this.name = goal.Name;
+            this.deadline = goal.Deadline;
+            this.period = goal.Span;
+            this.taskType = "Goal";
+            this.description = goal.Description;
+        }
+
+        public TaskBindingModel(Task task)
+        {
+            this.name = task.Name;
+            this.deadline = task.Deadline;
+            this.taskType = task.Type.Name;
+            this.description = task.Description;
         }
 
         public string Name

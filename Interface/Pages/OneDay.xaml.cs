@@ -1,4 +1,6 @@
 ﻿using Interface.Controllers;
+using Interface.Dialogs;
+using Models.BindingModels;
 using Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -43,7 +45,17 @@ namespace Interface.Pages
 
         public void Edit(object sender, RoutedEventArgs e)
         {
+            string idAndType = ((TextBlock)((Grid)((StackPanel)((Button)sender).Parent).Parent).FindName("Id")).Text;
 
+            TaskBindingModel model = controller.GetBinding(idAndType);
+            NewTaskDialog newTask = new NewTaskDialog(model);
+
+            newTask.ShowDialog();
+
+            if (newTask.DialogResult == true)
+            {
+                controller.ChangeTask(idAndType, newTask.GetTask());
+            }
         }
 
         public void Delete(object sender, RoutedEventArgs e)

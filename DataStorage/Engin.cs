@@ -39,16 +39,7 @@ namespace DataStorage
 
             foreach (Task task in currentTasks)
             {
-                TaskViewModel view = new TaskViewModel();
-
-                view.Id = task.Id.ToString() + ":" + task.Type.Name;
-                view.Name = task.Name;
-                view.Deadline = task.Deadline;
-                view.Description = task.Description;
-                view.Type = task.Type.Name;
-                view.PicturePath = task.Type.PicturePath;
-
-                views.Add(view);
+                views.Add(this.GenerateView(task));
             }
 
             return views;
@@ -60,16 +51,7 @@ namespace DataStorage
 
             foreach(Goal goal in context.Goals)
             {
-                TaskViewModel view = new TaskViewModel();
-
-                view.Id = goal.Id.ToString() + ":Goal";
-                view.Name = goal.Name;
-                view.Deadline = goal.RecalculateDate(date);
-                view.Description = goal.Description;
-                view.Type = "Goal";
-                view.PicturePath = Constants.GoalsIcon;
-
-                views.Add(view);
+                views.Add(this.GenerateView(goal, date));
             }
 
             return views;
@@ -119,23 +101,34 @@ namespace DataStorage
             return types;
         }
 
-        public TaskBindingModel GetTask(int id)
+        public TaskBindingModel GetTask(int id, string type)
         {
-            throw new NotImplementedException();
-            //TODO
+            return type == "Goal" ? new TaskBindingModel(context.Goals.Find(id)) : new TaskBindingModel(context.Tasks.Find(id));
         }
 
-        public void Add(TaskBindingModel model)
+        public int Add(TaskBindingModel model)
         {
             if (model.TaskType == "Goal")
-                this.AddGoal(model);
-            else this.AddTask(model);
+                return this.AddGoal(model);
+            else return this.AddTask(model);
         }
 
-        public bool Change(int id, TaskBindingModel model)
+        public TaskViewModel Change(int id, string type, TaskBindingModel model)
         {
-            throw new NotImplementedException();
-            //TODO
+            if (type != model.TaskType && (type == "Goal" || model.TaskType == "Goal"))
+            {
+                this.Delete(id, type);
+                id = this.Add(model);
+            }
+            else if (type == "Goal")
+                this.ChangeGoal(id, model);
+            else
+                this.ChangeTask(id, model);
+
+            if (type == "Goal")
+                return this.GenerateView(context.Goals.Find(id), DateTime.Today);
+            else
+                return this.GenerateView(context.Tasks.Find(id));
         }
 
         public void Delete(int id, string type)
@@ -175,7 +168,35 @@ namespace DataStorage
             return views;
         }
 
-        private void AddTask(TaskBindingModel model)
+        private TaskViewModel GenerateView(Task task)
+        {
+            TaskViewModel view = new TaskViewModel();
+
+            view.Id = task.Id.ToString() + ":" + task.Type.Name;
+            view.Name = task.Name;
+            view.Deadline = task.Deadline;
+            view.Description = task.Description;
+            view.Type = task.Type.Name;
+            view.PicturePath = task.Type.PicturePath;
+
+            return view;
+        }
+
+        private TaskViewModel GenerateView(Goal goal, DateTime date)
+        {
+            TaskViewModel view = new TaskViewModel();
+
+            view.Id = goal.Id.ToString() + ":Goal";
+            view.Name = goal.Name;
+            view.Deadline = goal.RecalculateDate(date);
+            view.Description = goal.Description;
+            view.Type = "Goal";
+            view.PicturePath = Constants.GoalsIcon;
+
+            return view;
+        }
+
+        private int AddTask(TaskBindingModel model)
         {
             Task task = new Task()
             {
@@ -187,9 +208,11 @@ namespace DataStorage
 
             context.Tasks.Add(task);
             context.SaveChanges();
+
+            return task.Id;
         }
 
-        private void AddGoal(TaskBindingModel model)
+        private int AddGoal(TaskBindingModel model)
         {
             Goal goal = new Goal()
             {
@@ -203,16 +226,33 @@ namespace DataStorage
 
             context.Goals.Add(goal);
             context.SaveChanges();
+
+            return goal.Id;
         }
 
         private void ChangeTask(int id, TaskBindingModel model)
         {
-            //TODO
+            Task task = context.Tasks.Find(id);
+
+            task.Name = model.Name;
+            task.Description = model.Description;
+            task.Type = context.Type.FirstOrDefault(e => e.Name == model.TaskType);
+            task.Deadline = model.Deadline;
+            context.SaveChanges();
         }
 
         private void ChangeGoal(int id, TaskBindingModel model)
         {
-            //TODO
+            Goal goal = context.Goals.Find(id);
+
+            goal.Name = model.Name;
+            goal.Description = model.Description;
+            goal.Span = model.Period;
+
+            goal.Deadline = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59);
+
+            goal.RescheduleGoal();
+            context.SaveChanges();
         }
 
         private void DeleteTask(int id)

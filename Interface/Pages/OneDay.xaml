@@ -205,16 +205,18 @@
 
 
                                 <StackPanel Grid.Column="3"
-                                VerticalAlignment="Center">
+                                            VerticalAlignment="Center">
                                     <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    Content="&#9998;"
-                                    FontSize="20"
-                                    Margin="0 0 0 15"/>
+                                            BorderThickness="0"
+                                            Content="&#9998;"
+                                            FontSize="20"
+                                            Margin="0 0 0 15"
+                                            Click="Edit"/>
                                     <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    FontSize="20"
-                                    Content="&#10008;"/>
+                                            BorderThickness="0"
+                                            FontSize="20"
+                                            Content="&#10008;"
+                                            Click="Delete"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

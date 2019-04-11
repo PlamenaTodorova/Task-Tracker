@@ -23,6 +23,14 @@ namespace Interface.Controllers
             this.tasks = new ObservableCollection<TaskViewModel>(tasks);
         }
 
+        protected override void RaAddModel(TaskViewModel changed)
+        {
+            if (changed.Type == "Goal")
+                this.goals.Add(changed);
+            else if (changed.Deadline <= date.AddDays(Constants.NumberOfDays))
+                this.tasks.Add(changed);
+        }
+
         protected override void ReAddGoal(TaskViewModel model)
         {
             HelperFunctions.RemoveElement<TaskViewModel>(this.goals, model);

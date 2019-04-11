@@ -1,6 +1,7 @@
 ﻿using DataStorage;
 using Models.BindingModels;
 using Models.DatabaseModels;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,15 +27,26 @@ namespace Interface.Dialogs
 
         public NewTaskDialog()
         {
-            InitializeComponent();
-            this.type.ItemsSource = Engin.GetEngin().GetTypes();
             this.model = new TaskBindingModel();
-            this.DataContext = model;
+            this.LoadDialog();
+        }
+
+        public NewTaskDialog(TaskBindingModel bindingModel)
+        {
+            this.model = bindingModel;
+            this.LoadDialog();
         }
 
         public TaskBindingModel GetTask()
         {
             return this.model;
+        }
+
+        private void LoadDialog()
+        {
+            InitializeComponent();
+            this.type.ItemsSource = Engin.GetEngin().GetTypes();
+            this.DataContext = model;
         }
 
         private void MinimizeWindow(object sender, RoutedEventArgs e)

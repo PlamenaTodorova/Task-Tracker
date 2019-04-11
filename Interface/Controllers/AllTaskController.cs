@@ -30,5 +30,14 @@ namespace Interface.Controllers
             this.goals.Add(model);
             this.tasks.Add(model);
         }
+
+        protected override void RaAddModel(TaskViewModel changed)
+        {
+            if (changed.Type == "Goal")
+                this.goals.Add(changed);
+
+            this.tasks.Add(changed);
+        }
+
     }
 }
