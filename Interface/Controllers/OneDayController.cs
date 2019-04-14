@@ -26,9 +26,9 @@ namespace Interface.Controllers
         protected override void RaAddModel(TaskViewModel changed)
         {
             if (changed.Type == "Goal")
-                this.goals.Add(changed);
+                HelperFunctions.PutInTheRightPlace<TaskViewModel>(this.goals, changed);
             else if (changed.Deadline <= date.AddDays(Constants.NumberOfDays))
-                this.tasks.Add(changed);
+                HelperFunctions.PutInTheRightPlace<TaskViewModel>(this.tasks, changed);
         }
 
         protected override void ReAddGoal(TaskViewModel model)

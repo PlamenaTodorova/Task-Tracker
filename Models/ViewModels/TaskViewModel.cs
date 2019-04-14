@@ -3,7 +3,7 @@ using System;
 
 namespace Models.ViewModels
 {
-    public class TaskViewModel
+    public class TaskViewModel : IComparable<TaskViewModel>
     {
         public string Id { get; set; }
 
@@ -16,5 +16,10 @@ namespace Models.ViewModels
         public DateTime Deadline { get; set; }
 
         public string Description { get; set; }
+
+        public int CompareTo(TaskViewModel other)
+        {
+            return this.Deadline.CompareTo(other.Deadline);
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace DataStorage
                 views.Add(this.GenerateView(task));
             }
 
+            views.Sort();
             return views;
         }
 
@@ -54,6 +55,7 @@ namespace DataStorage
                 views.Add(this.GenerateView(goal, date));
             }
 
+            views.Sort();
             return views;
         }
 
@@ -75,6 +77,7 @@ namespace DataStorage
                 views.AddRange(this.GetGoals(DateTime.Today));
             }
 
+            views.Sort();
             return views;
         }
 
