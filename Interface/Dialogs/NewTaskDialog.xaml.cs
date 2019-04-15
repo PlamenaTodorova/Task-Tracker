@@ -56,7 +56,8 @@ namespace Interface.Dialogs
 
         private void SaveButton(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            if (this.IsValid())
+                this.DialogResult = true;
         }
 
         private bool IsValid()
@@ -64,7 +65,10 @@ namespace Interface.Dialogs
             if (model.Name != null && model.Name != "" 
                 && model.TaskType != null && model.TaskType != "")
             {
-                return true;
+                if (model.TaskType != "Goal")
+                    return model.Deadline > DateTime.Today;
+                else
+                    return true;
             }
             return false;
         }

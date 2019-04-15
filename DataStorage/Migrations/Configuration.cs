@@ -26,6 +26,12 @@ namespace DataStorage.Migrations
             },
             new TaskType()
             {
+                Name = "School",
+                Id = 2,
+                PicturePath = "../Icons/school.png"
+            },
+            new TaskType()
+            {
                 Name = "Work",
                 Id = 2,
                 PicturePath = "../Icons/work.png"

@@ -118,6 +118,7 @@
                 <TextBox Grid.Column="1"
                          Grid.Row="0"
                          Margin="15 15 30 15"
+                         Padding="3"
                          Text="{Binding Name}"/>
                 <ComboBox Grid.Row="1"
                           Grid.Column="1"
@@ -140,6 +141,7 @@
                 <TextBox Grid.Row="4"
                          Grid.Column="1"
                          Margin="15 15 30 15"
+                         Padding="2"
                          TextWrapping="Wrap"
                          Text="{Binding Description}"/>
                 <StackPanel Grid.Row="5"
