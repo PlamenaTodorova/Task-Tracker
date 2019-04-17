@@ -59,6 +59,39 @@ namespace DataStorage
             return views;
         }
 
+        public ICollection<HistoryViewModel> GetOldTasks(DateTime date)
+        {
+            List<HistoryViewModel> views = new List<HistoryViewModel>();
+            List<Task> currentTasks = context.Tasks
+                .Where(t => t.Deadline == date)
+                .ToList();
+
+            foreach (Task task in currentTasks)
+            {
+                HistoryViewModel model = new HistoryViewModel(this.GenerateView(task));
+                model.IsFinishedPath = task.IsFinished ? Constants.FinishedIcon : Constants.UnfinishedIcon;
+                views.Add(model);
+            }
+
+            views.Sort();
+            return views;
+        }
+
+        public ICollection<HistoryViewModel> GetOldGoals(DateTime date)
+        {
+            List<HistoryViewModel> views = new List<HistoryViewModel>();
+
+            foreach (Goal goal in context.Goals)
+            {
+                HistoryViewModel model = new HistoryViewModel(this.GenerateView(goal, date));
+                model.IsFinishedPath = Constants.FinishedIcon;
+                views.Add(model);
+            }
+
+            views.Sort();
+            return views;
+        }
+
         public ICollection<TaskViewModel> GetAll(ICollection<TypeBindingModel> chosen)
         {
             List<int> indexes = chosen

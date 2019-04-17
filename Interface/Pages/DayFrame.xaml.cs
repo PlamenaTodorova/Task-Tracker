@@ -33,7 +33,10 @@ namespace Interface.Pages
 
         private void ChangeFrame()
         {
-            this.frameHolder.Navigate(new OneDay(date.Current));
+            if (date.Current < DateTime.Today)
+                this.frameHolder.Navigate(new PastDay(date.Current));
+            else
+                this.frameHolder.Navigate(new OneDay(date.Current));
         }
 
         private void MoveBack(object sender, RoutedEventArgs e)

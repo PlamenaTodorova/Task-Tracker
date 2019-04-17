@@ -62,8 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\PastTasksController.cs" />
     <Compile Include="Pages\Filters.xaml.cs">
       <DependentUpon>Filters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PastDay.xaml.cs">
+      <DependentUpon>PastDay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\EnumBindingSourceExtension.cs" />
     <Compile Include="Utilities\EnumDescriptionTypeConverter.cs" />
@@ -105,6 +109,10 @@
     <Page Include="Pages\OneDay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PastDay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +199,10 @@
     <Resource Include="Icons\social.png" />
     <Resource Include="Icons\task.png" />
     <Resource Include="Icons\work.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\finished.png" />
+    <Resource Include="Icons\unfinished.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
