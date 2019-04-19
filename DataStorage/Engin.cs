@@ -63,7 +63,7 @@ namespace DataStorage
         {
             List<HistoryViewModel> views = new List<HistoryViewModel>();
             List<Task> currentTasks = context.Tasks
-                .Where(t => t.Deadline == date)
+                .Where(t => t.Deadline.Year == date.Year && t.Deadline.Month == date.Month && t.Deadline.Day == date.Day)
                 .ToList();
 
             foreach (Task task in currentTasks)

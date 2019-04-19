@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataStorage;
 using Models.BindingModels;
 using Models.ViewModels;
+using Utilities;
 
 namespace Interface.Controllers
 {
@@ -31,6 +32,32 @@ namespace Interface.Controllers
         public ObservableCollection<HistoryViewModel> GetGoals()
         {
             return this.goals;
+        }
+
+        public void Check(string idAndType)
+        {
+            string[] data = idAndType.Split(':').ToArray();
+
+            HistoryViewModel model = data[1] == "Goal"
+                ? goals.FirstOrDefault(e => e.Id == idAndType)
+                : tasks.FirstOrDefault(e => e.Id == idAndType);
+
+            if (model.IsFinishedPath == Constants.UnfinishedIcon)
+            {
+                Engin.GetEngin().Check(int.Parse(data[0]), model);
+                model.IsFinishedPath = Constants.FinishedIcon;
+
+                if (data[1] == "Goal")
+                {
+                    HelperFunctions.RemoveElement<HistoryViewModel>(this.goals, model);
+                    HelperFunctions.PutInTheRightPlace<HistoryViewModel>(this.goals, model);
+                }
+                else
+                {
+                    HelperFunctions.RemoveElement<HistoryViewModel>(this.tasks, model);
+                    HelperFunctions.PutInTheRightPlace<HistoryViewModel>(this.tasks, model);
+                }                
+            }
         }
 
         private void GenerateTasks()

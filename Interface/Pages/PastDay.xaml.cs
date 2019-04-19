@@ -36,7 +36,7 @@ namespace Interface.Pages
         {
             string id = ((TextBlock)((Grid)((Button)sender).Parent).FindName("Id")).Text;
 
-            
+            controller.Check(id);
         }
 
         private void SetEmptyFields()
