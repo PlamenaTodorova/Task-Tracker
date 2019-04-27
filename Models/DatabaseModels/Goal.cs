@@ -16,11 +16,14 @@ namespace Models.DatabaseModels
 
     public class Goal : BaseTask
     {
+        public Goal()
+        {
+            this.FinishedTasks = new HashSet<LogEntry>();
+        }
+
         public Periods Span { get; set; }
 
-        public uint SuccessfullyFinished { get; set; }
-
-        public uint TotalChallanges { get; set; }
+        public virtual ICollection<LogEntry> FinishedTasks { get; set; }
 
         public void RescheduleGoal()
         {

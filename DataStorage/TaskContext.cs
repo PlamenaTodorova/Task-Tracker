@@ -18,6 +18,7 @@ namespace DataStorage
 
         //Additional
         public IDbSet<TaskType> Type { get; set; }
+        public IDbSet<LogEntry> GoalsLog { get; set; }
 
         internal void RecalculateGoalsDates()
         {
