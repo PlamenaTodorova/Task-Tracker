@@ -315,9 +315,18 @@ namespace DataStorage
         private void CheckGoal(int id, TaskViewModel model)
         {
             Goal goal = context.Goals.Find(id);
+
+            this.AddToLog(goal, model.Deadline);
+
             goal.RescheduleGoal();
             model.Deadline = goal.Deadline;
+
             context.SaveChanges();
+        }
+
+        private void AddToLog(Goal goal, DateTime date)
+        {
+
         }
     }
 }
