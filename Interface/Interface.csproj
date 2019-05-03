@@ -69,6 +69,9 @@
     <Compile Include="Pages\PastDay.xaml.cs">
       <DependentUpon>PastDay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Statistic.xaml.cs">
+      <DependentUpon>Statistic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\EnumBindingSourceExtension.cs" />
     <Compile Include="Utilities\EnumDescriptionTypeConverter.cs" />
     <Page Include="Dialogs\NewTaskDialog.xaml">
@@ -113,6 +116,10 @@
     <Page Include="Pages\PastDay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Statistic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +210,9 @@
   <ItemGroup>
     <Resource Include="Icons\finished.png" />
     <Resource Include="Icons\unfinished.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\statistic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

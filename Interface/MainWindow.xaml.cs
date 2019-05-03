@@ -42,6 +42,11 @@ namespace Interface
             this.Close();
         }
 
+        private void BackAStep(object sender, RoutedEventArgs e)
+        {
+            this.PageHolder.GoBack();
+        }
+
         private void SwitchToDaily(object sender, RoutedEventArgs e)
         {
             this.PageHolder.Navigate(new DayFrame());
@@ -64,6 +69,11 @@ namespace Interface
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
         {
             this.PageHolder.Navigate(new Filters());
+        }
+
+        private void ToGoalStatistic(object sender, RoutedEventArgs e)
+        {
+            this.PageHolder.Navigate(new Statistic());
         }
     }
 }

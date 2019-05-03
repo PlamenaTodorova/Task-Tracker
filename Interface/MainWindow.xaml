@@ -81,9 +81,10 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Button Style="{StaticResource ImageButtonStyle}">
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="BackAStep">
                         <StackPanel Orientation="Horizontal"
-                                    Margin="0 15">
+                                    Margin="0,15,-0.4,15" HorizontalAlignment="Left" Width="162">
                             <Image Source="Icons/back.png"/>
                             <TextBlock Text="Back"/>
                         </StackPanel>
@@ -113,6 +114,15 @@
                                     Margin="0 15">
                             <Image Source="Icons/all.png"/>
                             <TextBlock Text="All Tasks"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="ToGoalStatistic">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 15">
+                            <Image Source="Icons/statistic.png"/>
+                            <TextBlock Text="Statistic"/>
                         </StackPanel>
                     </Button>
 
