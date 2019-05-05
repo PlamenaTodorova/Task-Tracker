@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Interface.Pages
     /// </summary>
     public partial class Statistic : Page
     {
+        StatisticController controller;
+
         public Statistic()
         {
             InitializeComponent();
+            this.controller = new StatisticController();
+            this.goals.ItemsSource = this.controller.GetStats();
         }
     }
 }

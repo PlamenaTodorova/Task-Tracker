@@ -12,7 +12,7 @@
                   Height="550">
         <StackPanel>
             <StackPanel Margin="0 0 0 25">
-                <ItemsControl Name="tasks"
+                <ItemsControl Name="goals"
                           Margin="0 0 0 25">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -36,10 +36,6 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-
-                                    <TextBlock Name="Id"
-                                           Visibility="Collapsed"
-                                           Text="{Binding Id}"/>
 
                                     <StackPanel Grid.Column="1">
                                         <TextBlock FontSize="25" 

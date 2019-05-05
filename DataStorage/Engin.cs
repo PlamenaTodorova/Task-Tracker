@@ -13,12 +13,14 @@ namespace DataStorage
     {
         private TaskContext context;
         private static Engin engin;
+        private StatisticGenerationEngin statistic;
 
         private Engin()
         {
             this.context = new TaskContext();
             this.context.RecalculateGoalsDates();
             this.context.SaveChanges();
+            this.statistic = new StatisticGenerationEngin(this.context);
         }
 
         public static Engin GetEngin()
@@ -27,6 +29,11 @@ namespace DataStorage
                 engin = new Engin();
 
             return engin;
+        }
+
+        public StatisticGenerationEngin GetStatistic()
+        {
+            return this.statistic;
         }
 
         public ICollection<TaskViewModel> GetTasks(DateTime date)
