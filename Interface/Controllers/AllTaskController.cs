@@ -20,7 +20,7 @@ namespace Interface.Controllers
 
         protected override void GenerateTasks()
         {
-            List<TaskViewModel> tasks = Engin.GetEngin().GetAll(this.model).ToList();
+            List<TaskViewModel> tasks = Engin.GetEngin().GetTasksEngin().GetAll(this.model).ToList();
             this.tasks = new ObservableCollection<TaskViewModel>(tasks);
         }
 

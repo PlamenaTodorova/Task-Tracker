@@ -12,7 +12,7 @@ namespace Interface.Controllers
     {
         public void AddTask(TaskBindingModel model)
         {
-            Engin.GetEngin().Add(model);
+            Engin.GetEngin().GetTasksEngin().Add(model);
         }
     }
 }

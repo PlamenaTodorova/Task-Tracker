@@ -243,12 +243,11 @@ namespace DataStorage
             Goal goal = new Goal()
             {
                 Name = model.Name,
-                Deadline = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59),
                 Span = model.Period,
                 Description = model.Description,
             };
 
-            goal.RescheduleGoal();
+            goal.SetDate(DateTime.Today);
 
             context.Goals.Add(goal);
             context.SaveChanges();

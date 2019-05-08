@@ -23,7 +23,18 @@ namespace Models.DatabaseModels
 
         public Periods Span { get; set; }
 
+        public DateTime OriginalDate { get; set; }
+        
         public virtual ICollection<LogEntry> FinishedTasks { get; set; }
+
+        public void SetDate(DateTime current)
+        {
+            DateTime tomorrow = current.AddDays(1);
+
+            this.Deadline = current;
+            this.RescheduleGoal();
+            this.OriginalDate = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 0, 0, 0);
+        }
 
         public void RescheduleGoal()
         {

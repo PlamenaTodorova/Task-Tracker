@@ -44,7 +44,18 @@ namespace DataStorage
 
         private int GetTotalTimesPassed(Goal goal)
         {
-            throw new NotImplementedException();
+            switch (goal.Span)
+            {
+                case Periods.Day:
+                    return (DateTime.Today - goal.OriginalDate).Days;
+                case Periods.Week:
+                    return (DateTime.Today - goal.OriginalDate).Days / 7;
+                case Periods.Month:
+                    return (DateTime.Today.Year * 12 + DateTime.Today.Month) - (goal.OriginalDate.Year * 12 + goal.OriginalDate.Month);
+                case Periods.Year:
+                    return DateTime.Today.Year - goal.OriginalDate.Year;
+                default: return 0;
+            }
         }
 
         private int GetSuccessfulGoals(Goal goal)

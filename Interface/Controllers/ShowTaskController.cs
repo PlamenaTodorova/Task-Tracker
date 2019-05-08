@@ -44,7 +44,7 @@ namespace Interface.Controllers
         public TaskBindingModel GetBinding(string idAndType)
         {
             string[] data = idAndType.Split(':').ToArray();
-            return Engin.GetEngin().GetTask(int.Parse(data[0]), data[1]);
+            return Engin.GetEngin().GetTasksEngin().GetTask(int.Parse(data[0]), data[1]);
         }
 
         public void Check(string id)
@@ -52,7 +52,7 @@ namespace Interface.Controllers
             string[] data = id.Split(':').ToArray();
             TaskViewModel model = PickedTask(id);
 
-            model.Deadline = Engin.GetEngin().Check(int.Parse(data[0]), model);
+            model.Deadline = Engin.GetEngin().GetTasksEngin().Check(int.Parse(data[0]), model);
             
             if (data[1] == "Goal")
                 ReAddGoal(model);
@@ -65,7 +65,7 @@ namespace Interface.Controllers
             this.RemoveModel(idAndType);
 
             string[] data = idAndType.Split(':').ToArray();
-            TaskViewModel changed = Engin.GetEngin().Change(int.Parse(data[0]), data[1], model);
+            TaskViewModel changed = Engin.GetEngin().GetTasksEngin().Change(int.Parse(data[0]), data[1], model);
 
             this.RaAddModel(changed);
         }
@@ -76,7 +76,7 @@ namespace Interface.Controllers
             int id = int.Parse(data[0]);
             string type = data[1];
 
-            Engin.GetEngin().Delete(id, type);
+            Engin.GetEngin().GetTasksEngin().Delete(id, type);
 
             this.RemoveModel(idAndType);
         }
@@ -105,7 +105,7 @@ namespace Interface.Controllers
 
         private void GenerataGoals()
         {
-            List<TaskViewModel> goals = Engin.GetEngin().GetGoals(this.date).ToList();
+            List<TaskViewModel> goals = Engin.GetEngin().GetTasksEngin().GetGoals(this.date).ToList();
             this.goals = new ObservableCollection<TaskViewModel>(goals);
         }
     }

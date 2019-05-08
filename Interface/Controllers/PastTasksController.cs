@@ -44,7 +44,7 @@ namespace Interface.Controllers
 
             if (model.IsFinishedPath == Constants.UnfinishedIcon)
             {
-                Engin.GetEngin().Check(int.Parse(data[0]), model);
+                Engin.GetEngin().GetTasksEngin().Check(int.Parse(data[0]), model);
                 model.IsFinishedPath = Constants.FinishedIcon;
 
                 if (data[1] == "Goal")
@@ -62,13 +62,13 @@ namespace Interface.Controllers
 
         private void GenerateTasks()
         {
-            List<HistoryViewModel> tasks = Engin.GetEngin().GetOldTasks(this.date).ToList();
+            List<HistoryViewModel> tasks = Engin.GetEngin().GetTasksEngin().GetOldTasks(this.date).ToList();
             this.tasks = new ObservableCollection<HistoryViewModel>(tasks);
         }
 
         private void GenerateGoals()
         {
-            List<HistoryViewModel> goals = Engin.GetEngin().GetOldGoals(this.date).ToList();
+            List<HistoryViewModel> goals = Engin.GetEngin().GetTasksEngin().GetOldGoals(this.date).ToList();
             this.goals = new ObservableCollection<HistoryViewModel>(goals);
         }
     }

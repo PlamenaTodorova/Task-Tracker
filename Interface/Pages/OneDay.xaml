@@ -7,9 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       Title="OneDay"
+      Height="Auto"
       Background="#fffdd0">
     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Height="550">
+                  Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
                    FontSize="35"

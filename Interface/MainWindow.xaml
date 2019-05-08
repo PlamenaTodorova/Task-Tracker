@@ -54,7 +54,20 @@
                             HorizontalAlignment="Right">
                     <Button Style="{StaticResource ImageButtonStyle}"
                             Click="MinimizeWindow">
+                        <Image Source="Icons/hide.png"
+                               Margin="10 0"/>
+                    </Button>
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="MaximizeWindow"
+                            Name="minBtn"
+                            Visibility="Collapsed">
                         <Image Source="Icons/min.png"
+                               Margin="10 0"/>
+                    </Button>
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="MaximizeWindow"
+                            Name="maxBtn">
+                        <Image Source="Icons/max.png"
                                Margin="10 0"/>
                     </Button>
                     <Button Style="{StaticResource ImageButtonStyle}"
@@ -136,6 +149,7 @@
                 </StackPanel>
 
                 <Frame Grid.Column="1"
+                       Height="Auto"
                        Name="PageHolder"
                        NavigationUIVisibility="Hidden"
                        Background="#fffdd0">

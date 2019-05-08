@@ -6,10 +6,13 @@
       xmlns:local="clr-namespace:Interface.Pages"
       mc:Ignorable="d"
       d:DesignHeight="550" d:DesignWidth="800"
+      Height="Auto"
       Title="AllTasks"
       Background="#fffdd0">
-    <ScrollViewer VerticalScrollBarVisibility="Visible"
-                  Height="550">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                  Name="scroll"
+                  VerticalAlignment="Stretch"
+                  Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
                    FontSize="35"

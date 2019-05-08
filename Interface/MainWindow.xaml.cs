@@ -37,6 +37,23 @@ namespace Interface
             this.WindowState = WindowState.Minimized; 
         }
 
+        private void MaximizeWindow(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+                this.maxBtn.Visibility = Visibility.Visible;
+                this.minBtn.Visibility = Visibility.Collapsed;
+
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+                this.maxBtn.Visibility = Visibility.Visible;
+                this.minBtn.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -44,7 +61,14 @@ namespace Interface
 
         private void BackAStep(object sender, RoutedEventArgs e)
         {
-            this.PageHolder.GoBack();
+            try
+            {
+                this.PageHolder.GoBack();
+            }
+            catch (InvalidOperationException )
+            {
+                //It means there are no more pages to return back to
+            }
         }
 
         private void SwitchToDaily(object sender, RoutedEventArgs e)
