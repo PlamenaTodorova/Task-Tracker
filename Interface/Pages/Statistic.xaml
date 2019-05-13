@@ -38,7 +38,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <StackPanel Grid.Column="1">
+                                    <StackPanel Grid.Column="0">
                                         <TextBlock FontSize="25" 
                                        Text="{Binding Name}"/>
                                         <Grid>
@@ -72,7 +72,7 @@
 
                                     </StackPanel>
 
-                                    <TextBlock>
+                                    <TextBlock Grid.Column="2">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0} / {1}">
                                                 <Binding Path="Successful" />

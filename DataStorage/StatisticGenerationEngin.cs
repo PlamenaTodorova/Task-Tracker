@@ -47,13 +47,13 @@ namespace DataStorage
             switch (goal.Span)
             {
                 case Periods.Day:
-                    return (DateTime.Today - goal.OriginalDate).Days;
+                    return (DateTime.Today - goal.OriginalDate).Days + 1;
                 case Periods.Week:
-                    return (DateTime.Today - goal.OriginalDate).Days / 7;
+                    return (DateTime.Today - goal.OriginalDate).Days / 7 + 1;
                 case Periods.Month:
-                    return (DateTime.Today.Year * 12 + DateTime.Today.Month) - (goal.OriginalDate.Year * 12 + goal.OriginalDate.Month);
+                    return (DateTime.Today.Year * 12 + DateTime.Today.Month) - (goal.OriginalDate.Year * 12 + goal.OriginalDate.Month) + 1;
                 case Periods.Year:
-                    return DateTime.Today.Year - goal.OriginalDate.Year;
+                    return DateTime.Today.Year - goal.OriginalDate.Year + 1;
                 default: return 0;
             }
         }
