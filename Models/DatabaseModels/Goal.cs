@@ -69,5 +69,22 @@ namespace Models.DatabaseModels
                     return this.Deadline;
             }
         }
+
+        public DateTime LastPeriod()
+        {
+            switch (this.Span)
+            {
+                case Periods.Day:
+                    return this.Deadline.AddDays(-1);
+                case Periods.Week:
+                    return this.Deadline.AddDays(-7);
+                case Periods.Month:
+                    return this.Deadline.AddMonths(-1);
+                case Periods.Year:
+                    return this.Deadline.AddYears(-1);
+                default:
+                    return this.Deadline;
+            }
+        }
     }
 }

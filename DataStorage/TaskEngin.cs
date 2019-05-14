@@ -38,15 +38,27 @@ namespace DataStorage
 
         public ICollection<TaskViewModel> GetGoals(DateTime date)
         {
-            List<TaskViewModel> views = new List<TaskViewModel>();
+            List<TaskViewModel> views = new List<TaskViewModel>();    
 
             foreach (Goal goal in context.Goals)
             {
-                views.Add(this.GenerateView(goal, date));
+                if (CurrentlyUnfished(goal, date))
+                {
+                    views.Add(this.GenerateView(goal, date));
+                }
             }
 
             views.Sort();
             return views;
+        }
+
+        private bool CurrentlyUnfished(Goal goal, DateTime date)
+        {
+            DateTime lastDeadline = goal.LastPeriod();
+
+            if (lastDeadline < date)
+                return true;
+            return false;
         }
 
         public ICollection<HistoryViewModel> GetOldTasks(DateTime date)
