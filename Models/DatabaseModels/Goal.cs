@@ -53,6 +53,18 @@ namespace Models.DatabaseModels
             return result;
         }
 
+        public DateTime SetBack(DateTime date, DateTime current)
+        {
+            DateTime result = date;
+            DateTime other = this.LastPeriod(date);
+            while (result >= current && other >= current)
+            {
+                result = other;
+                other = this.LastPeriod(result);
+            }
+            return result;
+        }
+
         private DateTime Recalculate(DateTime date)
         {
             switch (this.Span)
@@ -72,18 +84,23 @@ namespace Models.DatabaseModels
 
         public DateTime LastPeriod()
         {
+            return this.LastPeriod(this.Deadline);
+        }
+
+        public DateTime LastPeriod(DateTime date)
+        {
             switch (this.Span)
             {
                 case Periods.Day:
-                    return this.Deadline.AddDays(-1);
+                    return date.AddDays(-1);
                 case Periods.Week:
-                    return this.Deadline.AddDays(-7);
+                    return date.AddDays(-7);
                 case Periods.Month:
-                    return this.Deadline.AddMonths(-1);
+                    return date.AddMonths(-1);
                 case Periods.Year:
-                    return this.Deadline.AddYears(-1);
+                    return date.AddYears(-1);
                 default:
-                    return this.Deadline;
+                    return date;
             }
         }
     }

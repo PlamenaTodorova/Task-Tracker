@@ -42,7 +42,7 @@ namespace DataStorage
 
             foreach (Goal goal in context.Goals)
             {
-                if (CurrentlyUnfished(goal, date))
+                if (this.CurrentlyUnfished(goal, date))
                 {
                     views.Add(this.GenerateView(goal, date));
                 }
@@ -50,15 +50,6 @@ namespace DataStorage
 
             views.Sort();
             return views;
-        }
-
-        private bool CurrentlyUnfished(Goal goal, DateTime date)
-        {
-            DateTime lastDeadline = goal.LastPeriod();
-
-            if (lastDeadline < date)
-                return true;
-            return false;
         }
 
         public ICollection<HistoryViewModel> GetOldTasks(DateTime date)
@@ -82,11 +73,18 @@ namespace DataStorage
         public ICollection<HistoryViewModel> GetOldGoals(DateTime date)
         {
             List<HistoryViewModel> views = new List<HistoryViewModel>();
+            List<Goal> suitable = context.Goals.Where(g => g.OriginalDate <= date).ToList();
 
-            foreach (Goal goal in context.Goals)
+            foreach (Goal goal in suitable)
             {
                 HistoryViewModel model = new HistoryViewModel(this.GenerateView(goal, date));
-                model.IsFinishedPath = Constants.FinishedIcon;
+
+                model.Deadline = goal.SetBack(model.Deadline, date);
+                DateTime beginPeriod = goal.LastPeriod(model.Deadline);
+
+                model.IsFinishedPath = context.GoalsLog
+                    .Where(l => l.Date >= beginPeriod && l.Date <= model.Deadline && l.Goal.Id == goal.Id)
+                    .Count() != 0 ? Constants.FinishedIcon : Constants.UnfinishedIcon;
                 views.Add(model);
             }
 
@@ -151,7 +149,7 @@ namespace DataStorage
             else return this.AddTask(model);
         }
 
-        public TaskViewModel Change(int id, string type, TaskBindingModel model)
+        public TaskViewModel Change(int id, string type, TaskBindingModel model, DateTime date)
         {
             if (type != model.TaskType && (type == "Goal" || model.TaskType == "Goal"))
             {
@@ -164,7 +162,13 @@ namespace DataStorage
                 this.ChangeTask(id, model);
 
             if (type == "Goal")
-                return this.GenerateView(context.Goals.Find(id), DateTime.Today);
+            {
+                Goal goal = context.Goals.Find(id);
+                if (!this.CurrentlyUnfished(goal, date))
+                    return null;
+
+                return this.GenerateView(goal, date);
+            }
             else
                 return this.GenerateView(context.Tasks.Find(id));
         }
@@ -183,6 +187,15 @@ namespace DataStorage
             else this.CheckTask(id);
 
             return model.Deadline;
+        }
+
+        private bool CurrentlyUnfished(Goal goal, DateTime date)
+        {
+            DateTime lastDeadline = goal.LastPeriod();
+
+            if (lastDeadline < date)
+                return true;
+            return false;
         }
 
         private List<TaskViewModel> GetAll(List<Task> currentTasks)

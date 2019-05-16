@@ -65,7 +65,7 @@ namespace Interface.Controllers
             this.RemoveModel(idAndType);
 
             string[] data = idAndType.Split(':').ToArray();
-            TaskViewModel changed = Engin.GetEngin().GetTasksEngin().Change(int.Parse(data[0]), data[1], model);
+            TaskViewModel changed = Engin.GetEngin().GetTasksEngin().Change(int.Parse(data[0]), data[1], model, date);
 
             this.RaAddModel(changed);
         }

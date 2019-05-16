@@ -49,8 +49,8 @@ namespace Interface
             else
             {
                 this.WindowState = WindowState.Maximized;
-                this.maxBtn.Visibility = Visibility.Visible;
-                this.minBtn.Visibility = Visibility.Collapsed;
+                this.maxBtn.Visibility = Visibility.Collapsed;
+                this.minBtn.Visibility = Visibility.Visible;
             }
         }
 
