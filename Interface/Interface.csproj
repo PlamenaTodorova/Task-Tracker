@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\PastTasksController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
+    <Compile Include="Controllers\TomorrowsTaskController.cs" />
     <Compile Include="Pages\Filters.xaml.cs">
       <DependentUpon>Filters.xaml</DependentUpon>
     </Compile>
@@ -72,6 +73,9 @@
     </Compile>
     <Compile Include="Pages\Statistic.xaml.cs">
       <DependentUpon>Statistic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tomorrow.xaml.cs">
+      <DependentUpon>Tomorrow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\EnumBindingSourceExtension.cs" />
     <Compile Include="Utilities\EnumDescriptionTypeConverter.cs" />
@@ -119,6 +123,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Statistic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tomorrow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,8 +35,10 @@ namespace Interface.Pages
         {
             if (date.Current < DateTime.Today)
                 this.frameHolder.Navigate(new PastDay(date.Current));
-            else
+            else if (date.Current == DateTime.Today)
                 this.frameHolder.Navigate(new OneDay(date.Current));
+            else
+                this.frameHolder.Navigate(new Tomorrow(date.Current));
         }
 
         private void MoveBack(object sender, RoutedEventArgs e)
@@ -50,7 +52,7 @@ namespace Interface.Pages
 
         private void MoveForward(object sender, RoutedEventArgs e)
         {
-            if (this.date.Current < DateTime.Today)
+            if (this.date.Current < DateTime.Today.AddDays(10))
             {
                 this.date.AddDays(1);
                 this.ChangeFrame();

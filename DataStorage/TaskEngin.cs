@@ -81,10 +81,10 @@ namespace DataStorage
 
                 model.Deadline = goal.SetBack(model.Deadline, date);
                 DateTime beginPeriod = goal.LastPeriod(model.Deadline);
-
-                model.IsFinishedPath = context.GoalsLog
-                    .Where(l => l.Date >= beginPeriod && l.Date <= model.Deadline && l.Goal.Id == goal.Id)
-                    .Count() != 0 ? Constants.FinishedIcon : Constants.UnfinishedIcon;
+                bool flag = context.GoalsLog
+                    .Where(l => l.Date > beginPeriod && l.Date <= model.Deadline && l.Goal.Id == goal.Id)
+                    .Count() != 0;
+                model.IsFinishedPath =  flag ? Constants.FinishedIcon : Constants.UnfinishedIcon;
                 views.Add(model);
             }
 
@@ -112,6 +112,53 @@ namespace DataStorage
 
             views.Sort();
             return views;
+        }
+
+        public ICollection<TomorrowViewModel> GetFutureTask(DateTime date)
+        {
+            DateTime deadline = date.AddDays(Constants.NumberOfDays);
+            List<TomorrowViewModel> views = new List<TomorrowViewModel>();
+            List<Task> currentTasks = this.context.Tasks
+                .Where(t => t.Deadline <= deadline && t.Deadline >= date && !t.IsFinished)
+                .ToList();
+
+            foreach (Task task in currentTasks)
+            {
+                TomorrowViewModel model = new TomorrowViewModel(this.GenerateView(task), true);
+                views.Add(model);
+            }
+
+            views.Sort();
+            return views;
+        }
+    
+        public ICollection<TomorrowViewModel> GetFutureGoal(DateTime date)
+        {
+            List<TomorrowViewModel> views = new List<TomorrowViewModel>();
+            List<Goal> suitable = context.Goals.ToList();
+
+            foreach (Goal goal in suitable)
+            {
+                TaskViewModel baseModel = this.GenerateView(goal, date);
+                bool isFinished = IsGoalFinished(goal, baseModel.Deadline);
+                TomorrowViewModel model = 
+                    new TomorrowViewModel(baseModel, isFinished);
+
+                views.Add(model);
+            }
+
+            views.Sort();
+            return views;
+        }
+
+        private bool IsGoalFinished(Goal goal, DateTime date)
+        {
+            DateTime beginPeriod = goal.LastPeriod(date);
+            bool result = context.GoalsLog
+                .Where(l => l.Date > beginPeriod && l.Date <= date && l.Goal.Id == goal.Id)
+                .Count() != 0;
+
+            return result;
         }
 
         public ICollection<TypeBindingModel> GetAllTypes()

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Interface.Pages.OneDay"
+﻿<Page x:Class="Interface.Pages.Tomorrow"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,10 +6,10 @@
       xmlns:local="clr-namespace:Interface.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
-      Title="OneDay"
+      Title="FutureDay"
       Height="Auto"
       Background="#fffdd0">
-    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
                   Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
@@ -50,7 +50,7 @@
                                 <TextBlock Name="Id"
                                            Visibility="Collapsed"
                                            Text="{Binding Id}"/>
-                                
+
                                 <StackPanel Margin="15"
                                     Grid.Column="0">
                                     <Image Source="{Binding PicturePath}"/>
@@ -203,6 +203,7 @@
                                         BorderThickness="0"
                                         FontSize="35"
                                         Content="&#10003;"
+                                        Visibility="{Binding IsFinished}"
                                         Click="Check"/>
 
 
@@ -213,11 +214,13 @@
                                             Content="&#9998;"
                                             FontSize="20"
                                             Margin="0 0 0 15"
+                                            Visibility="{Binding IsFinished}"
                                             Click="Edit"/>
                                     <Button Background="Transparent"
                                             BorderThickness="0"
                                             FontSize="20"
                                             Content="&#10008;"
+                                            Visibility="{Binding IsFinished}"
                                             Click="Delete"/>
                                 </StackPanel>
                             </Grid>
