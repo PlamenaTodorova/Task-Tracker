@@ -101,6 +101,7 @@
                                         BorderThickness="0"
                                         FontSize="35"
                                         Content="&#10003;"
+                                        Visibility="{Binding IsAppointment}"
                                         Click="Check"/>
 
                                 <StackPanel Grid.Column="3"

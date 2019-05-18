@@ -9,13 +9,8 @@ namespace Models.ViewModels
     public class HistoryViewModel : TaskViewModel, IComparable<HistoryViewModel>
     {
         public HistoryViewModel(TaskViewModel taskViewModel)
+            :base(taskViewModel)
         {
-            this.Id = taskViewModel.Id;
-            this.Name = taskViewModel.Name;
-            this.Deadline = taskViewModel.Deadline;
-            this.Type = taskViewModel.Type;
-            this.Description = taskViewModel.Description;
-            this.PicturePath = taskViewModel.PicturePath;
         }
 
         public string IsFinishedPath { get; set; }

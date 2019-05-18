@@ -251,14 +251,7 @@ namespace DataStorage
 
             foreach (Task task in currentTasks)
             {
-                TaskViewModel view = new TaskViewModel();
-
-                view.Id = task.Id.ToString() + ":" + task.Type.Name;
-                view.Name = task.Name;
-                view.Deadline = task.Deadline;
-                view.Description = task.Description;
-                view.Type = task.Type.Name;
-                view.PicturePath = task.Type.PicturePath;
+                TaskViewModel view = GenerateView(task);
 
                 views.Add(view);
             }
@@ -268,7 +261,7 @@ namespace DataStorage
 
         private TaskViewModel GenerateView(Task task)
         {
-            TaskViewModel view = new TaskViewModel();
+            TaskViewModel view = new TaskViewModel(task.Type.Name == "Apointment");
 
             view.Id = task.Id.ToString() + ":" + task.Type.Name;
             view.Name = task.Name;
@@ -282,7 +275,7 @@ namespace DataStorage
 
         private TaskViewModel GenerateView(Goal goal, DateTime date)
         {
-            TaskViewModel view = new TaskViewModel();
+            TaskViewModel view = new TaskViewModel(false);
 
             view.Id = goal.Id.ToString() + ":Goal";
             view.Name = goal.Name;
