@@ -110,13 +110,23 @@ namespace Interface.Controllers
 
         private void GenerateTasks()
         {
-            List<TomorrowViewModel> tasks = Engin.GetEngin().GetTasksEngin().GetFutureTask(this.date).ToList();
+            List<TomorrowViewModel> tasks = Engin.GetEngin()
+                .GetTasksEngin()
+                .GetTasks(this.date)
+                .ToList()
+                .Select(e => e as TomorrowViewModel)
+                .ToList();
             this.tasks = new ObservableCollection<TomorrowViewModel>(tasks);
         }
 
         private void GenerateGoals()
         {
-            List<TomorrowViewModel> goals = Engin.GetEngin().GetTasksEngin().GetFutureGoal(this.date).ToList();
+            List<TomorrowViewModel> goals = Engin.GetEngin()
+                .GetTasksEngin()
+                .GetGoals(this.date)
+                .ToList()
+                .Select(e => e as TomorrowViewModel)
+                .ToList();
             this.goals = new ObservableCollection<TomorrowViewModel>(goals);
         }
     }

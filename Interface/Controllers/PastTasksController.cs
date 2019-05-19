@@ -62,13 +62,22 @@ namespace Interface.Controllers
 
         private void GenerateTasks()
         {
-            List<HistoryViewModel> tasks = Engin.GetEngin().GetTasksEngin().GetOldTasks(this.date).ToList();
+            List<HistoryViewModel> tasks = Engin.GetEngin()
+                .GetTasksEngin()
+                .GetTasks(this.date)
+                .ToList()
+                .Select(e => e as HistoryViewModel)
+                .ToList();
             this.tasks = new ObservableCollection<HistoryViewModel>(tasks);
         }
 
         private void GenerateGoals()
         {
-            List<HistoryViewModel> goals = Engin.GetEngin().GetTasksEngin().GetOldGoals(this.date).ToList();
+            List<HistoryViewModel> goals = Engin.GetEngin()
+                .GetTasksEngin()
+                .GetGoals(this.date)
+                .ToList().Select(e => e as HistoryViewModel)
+                .ToList();
             this.goals = new ObservableCollection<HistoryViewModel>(goals);
         }
     }

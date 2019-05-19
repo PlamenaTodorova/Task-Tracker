@@ -1,4 +1,5 @@
-﻿using Models.BindingModels;
+﻿using DataStorage.Engins;
+using Models.BindingModels;
 using Models.DatabaseModels;
 using Models.ViewModels;
 using System;
@@ -11,12 +12,17 @@ namespace DataStorage
     public class TaskEngin
     {
         private TaskContext context;
+        private CurrentTaskEngin current;
+        private FutureTaskEngin future;
+        private PastTaskEngin past;
+        private BaseTaskEngin inUse;
 
         internal TaskEngin(TaskContext context)
         {
             this.context = context;
-            this.context.RecalculateGoalsDates();
-            this.context.SaveChanges();
+            current = new CurrentTaskEngin(this.context);
+            future = new FutureTaskEngin(this.context);
+            past = new PastTaskEngin(this.context);
         }
 
         public ICollection<TaskViewModel> GetTasks(DateTime date)

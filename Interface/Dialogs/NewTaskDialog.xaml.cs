@@ -45,7 +45,7 @@ namespace Interface.Dialogs
         private void LoadDialog()
         {
             InitializeComponent();
-            this.type.ItemsSource = Engin.GetEngin().GetTasksEngin().GetTypes();
+            this.type.ItemsSource = Engin.GetEngin().GetTypes();
             this.DataContext = model;
         }
 

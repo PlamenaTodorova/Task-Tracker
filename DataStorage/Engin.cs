@@ -1,4 +1,5 @@
-﻿using Models.BindingModels;
+﻿using DataStorage.Engins;
+using Models.BindingModels;
 using Models.DatabaseModels;
 using Models.ViewModels;
 using System;
@@ -16,11 +17,39 @@ namespace DataStorage
         private StatisticGenerationEngin statistic;
         private TaskEngin task;
 
+        private CurrentTaskEngin current;
+        private FutureTaskEngin future;
+        private PastTaskEngin past;
+        private BaseTaskEngin inUse;
+
         private Engin()
         {
             this.context = new TaskContext();
+
+            this.context.RecalculateGoalsDates();
+            this.context.SaveChanges();
+
             this.task = new TaskEngin(this.context);
             this.statistic = new StatisticGenerationEngin(this.context);
+
+            this.current = new CurrentTaskEngin(this.context);
+            this.future = new FutureTaskEngin(this.context);
+            this.past = new PastTaskEngin(this.context);
+        }
+
+        public void ChangeContext(DateTime date)
+        {
+            if (date < DateTime.Today)
+                this.inUse = this.past;
+            else if (date == DateTime.Today)
+                this.inUse = this.current;
+            else
+                this.inUse = this.future;
+        }
+
+        public BaseTaskEngin GetTasksEngin()
+        {
+            return this.inUse;
         }
 
         public static Engin GetEngin()
@@ -36,9 +65,23 @@ namespace DataStorage
             return this.statistic;
         }
 
-        public TaskEngin GetTasksEngin()
+        /*public TaskEngin GetTasksEngin()
         {
             return this.task;
+        }*/
+
+        public ICollection<string> GetTypes()
+        {
+            List<string> types = context.Type
+                .Select(e => e.Name)
+                .ToList();
+            types.Add("Goal");
+            return types;
+        }
+
+        public int Add(TaskBindingModel model)
+        {
+            return SharedEnginFunctions.Add(this.context, model);
         }
     }
 }

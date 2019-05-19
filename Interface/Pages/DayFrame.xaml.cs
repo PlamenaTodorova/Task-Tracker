@@ -1,4 +1,5 @@
-﻿using Models.ViewModels;
+﻿using DataStorage;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,20 @@ namespace Interface.Pages
         private void ChangeFrame()
         {
             if (date.Current < DateTime.Today)
+            {
+                Engin.GetEngin().ChangeContext(date.Current);
                 this.frameHolder.Navigate(new PastDay(date.Current));
+            }
             else if (date.Current == DateTime.Today)
+            {
+                Engin.GetEngin().ChangeContext(date.Current);
                 this.frameHolder.Navigate(new OneDay(date.Current));
+            }
             else
+            {
+                Engin.GetEngin().ChangeContext(date.Current);
                 this.frameHolder.Navigate(new Tomorrow(date.Current));
+            }               
         }
 
         private void MoveBack(object sender, RoutedEventArgs e)

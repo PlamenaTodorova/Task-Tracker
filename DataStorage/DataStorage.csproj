@@ -54,6 +54,11 @@
   <ItemGroup>
     <Compile Include="DataStorage.cs" />
     <Compile Include="Engin.cs" />
+    <Compile Include="Engins\BaseTaskEngin.cs" />
+    <Compile Include="Engins\CurrentTaskEngin.cs" />
+    <Compile Include="Engins\FutureTaskEngin.cs" />
+    <Compile Include="Engins\PastTaskEngin.cs" />
+    <Compile Include="Engins\SharedEnginFunctions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticGenerationEngin.cs" />
