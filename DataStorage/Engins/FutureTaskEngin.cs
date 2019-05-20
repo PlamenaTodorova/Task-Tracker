@@ -47,6 +47,16 @@ namespace DataStorage.Engins
                 views.Add(model);
             }
 
+            List<Appointment> currentAppointment = this.Context.Appointments
+                .Where(t => t.Deadline <= deadline && t.Deadline >= date)
+                .ToList();
+
+            foreach (Appointment task in currentAppointment)
+            {
+                TomorrowViewModel model = new TomorrowViewModel(this.GenerateView(task), true);
+                views.Add(model);
+            }
+
             views.Sort();
             return views.Select(e => e as TaskViewModel).ToList(); ;
         }

@@ -42,18 +42,24 @@ namespace DataStorage.Engins
         {
             if (type == "Goal")
                 this.DeleteGoal(id);
-            else this.DeleteTask(id);
+            else if (type == "Appointment")
+                this.DeleteAppointment(id);
+            else
+                this.DeleteTask(id);
         }
 
         public TaskViewModel Change(int id, string type, TaskBindingModel model, DateTime date)
         {
-            if (type != model.TaskType && (type == "Goal" || model.TaskType == "Goal"))
+            if (type != model.TaskType && (type == "Goal" || model.TaskType == "Goal"
+                || type == "Appointment" || model.TaskType == "Appointment"))
             {
                 this.Delete(id, type);
                 id = SharedEnginFunctions.Add(this.Context, model);
             }
             else if (type == "Goal")
                 this.ChangeGoal(id, model);
+            else if (type == "Appointment")
+                this.ChangeAppointment(id, model);
             else
                 this.ChangeTask(id, model);
 
@@ -65,6 +71,8 @@ namespace DataStorage.Engins
 
                 return this.GenerateView(goal, date);
             }
+            else if (type == "Appointment")
+                return this.GenerateView(context.Appointments.Find(id));
             else
                 return this.GenerateView(context.Tasks.Find(id));
         }
@@ -99,7 +107,7 @@ namespace DataStorage.Engins
 
         protected TaskViewModel GenerateView(Task task)
         {
-            TaskViewModel view = new TaskViewModel(task.Type.Name == "Apointment");
+            TaskViewModel view = new TaskViewModel(false);
 
             view.Id = task.Id.ToString() + ":" + task.Type.Name;
             view.Name = task.Name;
@@ -125,6 +133,20 @@ namespace DataStorage.Engins
             return view;
         }
 
+        protected TaskViewModel GenerateView(BaseTask task)
+        {
+            TaskViewModel view = new TaskViewModel(true);
+
+            view.Id = task.Id.ToString() + ":App";
+            view.Name = task.Name;
+            view.Deadline = task.Deadline;
+            view.Description = task.Description;
+            view.Type = "Appointment";
+            view.PicturePath = Constants.AppointmentIcon;
+
+            return view;
+        }
+
         protected void AddToLog(Goal goal, DateTime date)
         {
             LogEntry entry = new LogEntry();
@@ -136,15 +158,10 @@ namespace DataStorage.Engins
         }
 
         //To be overriden by subclasses
-        public virtual ICollection<TypeBindingModel> GetAllTypes()
-        {
-            return null;
-        }
+        public virtual ICollection<TypeBindingModel> GetAllTypes() { return null; }
 
         public virtual ICollection<TaskViewModel> GetAll(ICollection<TypeBindingModel> chosen)
-        {
-            return null;
-        }
+            { return null; }
 
         protected virtual void CheckGoal(int id, TaskViewModel model)
         {
@@ -174,6 +191,13 @@ namespace DataStorage.Engins
             context.Goals.Remove(toRemove);
         }
 
+        private void DeleteAppointment(int id)
+        {
+            Appointment toRemove = context.Appointments.Find(id);
+
+            context.Appointments.Remove(toRemove);
+        }
+
         private void ChangeTask(int id, TaskBindingModel model)
         {
             Task task = context.Tasks.Find(id);
@@ -196,6 +220,18 @@ namespace DataStorage.Engins
             goal.Deadline = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 23, 59, 59);
 
             goal.RescheduleGoal();
+            context.SaveChanges();
+        }
+
+        private void ChangeAppointment(int id, TaskBindingModel model)
+        {
+            Appointment appointment = context.Appointments.Find(id);
+
+            appointment.Name = model.Name;
+            appointment.Description = model.Description;
+
+            appointment.Deadline = new DateTime(model.Deadline.Year, model.Deadline.Month, model.Deadline.Day, 23, 59, 59);
+
             context.SaveChanges();
         }
 

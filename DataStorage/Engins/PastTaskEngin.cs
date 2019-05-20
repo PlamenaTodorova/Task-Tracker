@@ -28,6 +28,17 @@ namespace DataStorage.Engins
                 views.Add(model);
             }
 
+            List<Appointment> currentAppointment = this.Context.Appointments
+                .Where(t => t.Deadline.Year == date.Year && t.Deadline.Month == date.Month && t.Deadline.Day == date.Day)
+                .ToList();
+
+            foreach (Appointment task in currentAppointment)
+            {
+                HistoryViewModel model = new HistoryViewModel(this.GenerateView(task));
+                model.IsFinishedPath = Constants.FinishedIcon;
+                views.Add(model);
+            }
+
             views.Sort();
             return views.Select(e => e as TaskViewModel).ToList();
         }

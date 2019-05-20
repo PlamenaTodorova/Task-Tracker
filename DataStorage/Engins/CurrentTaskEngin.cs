@@ -45,6 +45,15 @@ namespace DataStorage.Engins
                 views.Add(this.GenerateView(task));
             }
 
+            List<Appointment> currentAppointment = this.Context.Appointments
+                .Where(t => t.Deadline <= deadline && t.Deadline >= date)
+                .ToList();
+
+            foreach (Appointment task in currentAppointment)
+            {
+                views.Add(this.GenerateView(task));
+            }
+
             views.Sort();
             return views;
         }
@@ -67,6 +76,18 @@ namespace DataStorage.Engins
                 views.AddRange(this.GetGoals(DateTime.Today));
             }
 
+            if (indexes.Contains(-2))
+            {
+                List<Appointment> appointments = this.Context.Appointments
+                    .Where(e => e.Deadline >= DateTime.Today)
+                    .ToList();
+
+                foreach (Appointment appointment in appointments)
+                {
+                    views.Add(this.GenerateView(appointment));
+                }
+            }
+
             views.Sort();
             return views;
         }
@@ -81,6 +102,7 @@ namespace DataStorage.Engins
             }
 
             bind.Add(new TypeBindingModel("Goal", -1));
+            bind.Add(new TypeBindingModel("Appointment", -2));
 
             return bind;
         }

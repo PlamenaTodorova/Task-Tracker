@@ -8,6 +8,7 @@
         public static string FinishedFile = @".\Tasks\finished.json";
 
         public static string GoalsIcon = @"../Icons/goal.png";
+        public static string AppointmentIcon = @"../Icons/appointment.png";
         public static string FinishedIcon = @"../Icons/finished.png";
         public static string UnfinishedIcon = @"../Icons/unfinished.png";
 

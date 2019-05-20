@@ -17,12 +17,12 @@ namespace DataStorage.Migrations
 
         protected override void Seed(TaskContext context)
         {
-            context.Type.AddOrUpdate(e => e.Name, 
+            context.Type.AddOrUpdate(e => e.Name,
             new TaskType()
             {
-                    Name = "Task",
-                    Id = 1,
-                    PicturePath = "../Icons/task.png"
+                Name = "Task",
+                Id = 1,
+                PicturePath = "../Icons/task.png"
             },
             new TaskType()
             {
@@ -47,12 +47,6 @@ namespace DataStorage.Migrations
                 Name = "Me",
                 Id = 4,
                 PicturePath = "../Icons/me.png"
-            },
-            new TaskType()
-            {
-                Name = "Apointment",
-                Id = 5,
-                PicturePath = "../Icons/apointment.png"
             });
         }
     }

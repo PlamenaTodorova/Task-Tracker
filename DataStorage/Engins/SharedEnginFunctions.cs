@@ -13,7 +13,10 @@ namespace DataStorage.Engins
         {
             if (model.TaskType == "Goal")
                 return AddGoal(context, model);
-            else return AddTask(context,model);
+            else if (model.TaskType == "Appointment")
+                return AddAppointment(context, model);
+            else
+                return AddTask(context, model);
         }
 
         private static int AddTask(TaskContext context, TaskBindingModel model)
@@ -47,6 +50,22 @@ namespace DataStorage.Engins
             context.SaveChanges();
 
             return goal.Id;
+        }
+
+        private static int AddAppointment(TaskContext context, TaskBindingModel model)
+        {
+            Appointment appointment = new Appointment()
+            {
+                Name = model.Name,
+                Deadline = new DateTime(model.Deadline.Year, model.Deadline.Month, model.Deadline.Day, 23, 59, 59),
+                Description = model.Description
+            };
+
+            
+            context.Appointments.Add(appointment);
+            context.SaveChanges();
+
+            return appointment.Id;
         }
     }
 }

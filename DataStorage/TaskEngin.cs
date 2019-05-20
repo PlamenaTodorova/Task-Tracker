@@ -267,7 +267,7 @@ namespace DataStorage
 
         private TaskViewModel GenerateView(Task task)
         {
-            TaskViewModel view = new TaskViewModel(task.Type.Name == "Apointment");
+            TaskViewModel view = new TaskViewModel(task.Type.Name == "Appointment");
 
             view.Id = task.Id.ToString() + ":" + task.Type.Name;
             view.Name = task.Name;

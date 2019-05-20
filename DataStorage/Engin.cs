@@ -15,8 +15,7 @@ namespace DataStorage
         private TaskContext context;
         private static Engin engin;
         private StatisticGenerationEngin statistic;
-        private TaskEngin task;
-
+        
         private CurrentTaskEngin current;
         private FutureTaskEngin future;
         private PastTaskEngin past;
@@ -29,7 +28,6 @@ namespace DataStorage
             this.context.RecalculateGoalsDates();
             this.context.SaveChanges();
 
-            this.task = new TaskEngin(this.context);
             this.statistic = new StatisticGenerationEngin(this.context);
 
             this.current = new CurrentTaskEngin(this.context);
@@ -65,16 +63,12 @@ namespace DataStorage
             return this.statistic;
         }
 
-        /*public TaskEngin GetTasksEngin()
-        {
-            return this.task;
-        }*/
-
         public ICollection<string> GetTypes()
         {
             List<string> types = context.Type
                 .Select(e => e.Name)
                 .ToList();
+            types.Add("Appointment");
             types.Add("Goal");
             return types;
         }

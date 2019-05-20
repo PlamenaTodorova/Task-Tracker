@@ -183,7 +183,7 @@
     <Resource Include="Icons\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\apointment.png" />
+    <Resource Include="Icons\appointment.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\plus.png" />
