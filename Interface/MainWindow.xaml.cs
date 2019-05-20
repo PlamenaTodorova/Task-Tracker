@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataStorage;
 using Interface.Controllers;
 using Interface.Dialogs;
 using Interface.Pages;
@@ -92,6 +93,7 @@ namespace Interface
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
         {
+            Engin.GetEngin().ChangeContext(DateTime.Today);
             this.PageHolder.Navigate(new Filters());
         }
 
