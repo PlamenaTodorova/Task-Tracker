@@ -38,6 +38,14 @@ namespace Models.BindingModels
             this.description = task.Description;
         }
 
+        public TaskBindingModel(Appointment appointment)
+        {
+            this.name = appointment.Name;
+            this.deadline = appointment.Deadline;
+            this.taskType = "Appointment";
+            this.description = appointment.Description;
+        }
+
         public string Name
         {
             get { return this.name; }

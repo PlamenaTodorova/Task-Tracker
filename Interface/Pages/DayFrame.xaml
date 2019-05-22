@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       Height="Auto"
       d:DesignHeight="450" d:DesignWidth="800"
-      Background="#fffdd0">
+      Background="#fdf5e6">
     <Page.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
             <Setter Property="Template">
@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0"
-              Height="40"
+              Height="25"
               Background="LightGray"
               Margin="0 0 0 5">
             <Grid.ColumnDefinitions>

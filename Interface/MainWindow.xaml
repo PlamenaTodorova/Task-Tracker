@@ -13,6 +13,7 @@
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
+            <Setter Property="Height" Value="60"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -27,8 +28,8 @@
             Background="#4d004d">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="65"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -38,40 +39,45 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0"
-                            Margin="25 10"
+                            Margin="25 0"
                             Orientation="Horizontal">
-                    <Image Source="Icons/logo.png"/>
+                    <Image Height="50"
+                           Source="Icons/logo.png"/>
                     <Label Foreground="White"
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Top"
                            Padding="10 0"
-                           FontSize="35"                           
+                           FontSize="30"                           
                            Content="Task Tracker"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"
                             Margin="25 10"
                             Orientation="Horizontal"
+                            Height="25"
                             HorizontalAlignment="Right">
                     <Button Style="{StaticResource ImageButtonStyle}"
                             Click="MinimizeWindow">
                         <Image Source="Icons/hide.png"
-                               Margin="10 0"/>
+                               Margin="10 0 10 20"/>
                     </Button>
                     <Button Style="{StaticResource ImageButtonStyle}"
                             Click="MaximizeWindow"
                             Name="minBtn"
+                            Height="25"
                             Visibility="Collapsed">
                         <Image Source="Icons/min.png"
                                Margin="10 0"/>
                     </Button>
                     <Button Style="{StaticResource ImageButtonStyle}"
                             Click="MaximizeWindow"
-                            Name="maxBtn">
+                            Name="maxBtn"
+                            Height="25">
                         <Image Source="Icons/max.png"
                                Margin="10 0"/>
                     </Button>
                     <Button Style="{StaticResource ImageButtonStyle}"
-                            Click="CloseWindow">
+                            Click="CloseWindow"
+                            Height="25">
                         <Image Source="Icons/close.png"
                                Margin="10 0 0 0"/>
                     </Button>
@@ -99,7 +105,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,15,-0.4,15" HorizontalAlignment="Left" Width="162">
                             <Image Source="Icons/back.png"/>
-                            <TextBlock Text="Back"/>
+                            <TextBlock Text="Back"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>
 
@@ -108,7 +115,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/daily.png"/>
-                            <TextBlock Text="Daily Tasks"/>
+                            <TextBlock Text="Daily Tasks"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>
 
@@ -117,7 +125,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/plus.png"/>
-                            <TextBlock Text="New Task"/>
+                            <TextBlock Text="New Task"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>
 
@@ -126,7 +135,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/all.png"/>
-                            <TextBlock Text="All Tasks"/>
+                            <TextBlock Text="All Tasks"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>
 
@@ -135,7 +145,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/statistic.png"/>
-                            <TextBlock Text="Statistic"/>
+                            <TextBlock Text="Statistic"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>
 
@@ -143,7 +154,8 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/calendar.png"/>
-                            <TextBlock Text="Calendar"/>
+                            <TextBlock Text="Calendar"
+                                       Margin="10 5"/>
                         </StackPanel>
                     </Button>                        
                 </StackPanel>
@@ -152,7 +164,7 @@
                        Height="Auto"
                        Name="PageHolder"
                        NavigationUIVisibility="Hidden"
-                       Background="#fffdd0">
+                       Background="#fdf5e6">
                     
                 </Frame>
             </Grid>

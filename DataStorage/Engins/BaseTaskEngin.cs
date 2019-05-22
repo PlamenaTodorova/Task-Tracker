@@ -26,7 +26,11 @@ namespace DataStorage.Engins
         //Common
         public TaskBindingModel GetTask(int id, string type)
         {
-            return type == "Goal" ? new TaskBindingModel(context.Goals.Find(id)) : new TaskBindingModel(context.Tasks.Find(id));
+            if (type == "Goal")
+                return new TaskBindingModel(context.Goals.Find(id));
+            else if (type == "App")
+                return new TaskBindingModel(context.Appointments.Find(id));
+            return new TaskBindingModel(context.Tasks.Find(id));
         }
 
         public DateTime Check(int id, TaskViewModel model)
@@ -42,7 +46,7 @@ namespace DataStorage.Engins
         {
             if (type == "Goal")
                 this.DeleteGoal(id);
-            else if (type == "Appointment")
+            else if (type == "App")
                 this.DeleteAppointment(id);
             else
                 this.DeleteTask(id);
@@ -50,8 +54,11 @@ namespace DataStorage.Engins
 
         public TaskViewModel Change(int id, string type, TaskBindingModel model, DateTime date)
         {
+            if (type == "App")
+                type = "Appointment";
+
             if (type != model.TaskType && (type == "Goal" || model.TaskType == "Goal"
-                || type == "Appointment" || model.TaskType == "Appointment"))
+                || type == "App" || model.TaskType == "Appointment"))
             {
                 this.Delete(id, type);
                 id = SharedEnginFunctions.Add(this.Context, model);

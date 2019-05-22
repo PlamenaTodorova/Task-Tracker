@@ -8,12 +8,12 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="OneDay"
       Height="Auto"
-      Background="#fffdd0">
+      Background="#fdf5e6">
     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                   Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
-                   FontSize="35"
+                   FontSize="25"
                    Background="LightGray"/>
             <Label Name="tasks_existance"
                    Content="No tasks"
@@ -125,7 +125,7 @@
             </ItemsControl>
 
             <Label Content="Goals:"
-                   FontSize="35"
+                   FontSize="25"
                    Background="LightGray"/>
             <Label Name="goals_existance"
                    Content="No tasks"

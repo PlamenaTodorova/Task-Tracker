@@ -8,14 +8,14 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Height="Auto"
       Title="AllTasks"
-      Background="#fffdd0">
+      Background="#fdf5e6">
     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                   Name="scroll"
                   VerticalAlignment="Stretch"
                   Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
-                   FontSize="35"
+                   FontSize="20"
                    Background="LightGray"/>
 
             <StackPanel Margin="0 0 0 25">
@@ -105,6 +105,7 @@
                                             BorderThickness="0"
                                             FontSize="35"
                                             Click="Check"
+                                            Visibility="{Binding IsAppointment}"
                                             Content="&#10003;"/>
 
                                     <StackPanel Grid.Column="3"

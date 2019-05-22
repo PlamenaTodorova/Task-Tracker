@@ -8,7 +8,7 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="PastDay"
       Height="Auto"
-      Background="#fffdd0">
+      Background="#fdf5e6">
     <Page.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
             <Setter Property="Template">
@@ -25,7 +25,7 @@
                   Height="Auto">
         <StackPanel>
             <Label Content="Tasks:"
-                   FontSize="35"
+                   FontSize="25"
                    Background="LightGray"/>
             <Label Name="tasks_existance"
                    Content="No tasks"
@@ -110,7 +110,8 @@
                                 <Button Grid.Column="2" 
                                         Background="Transparent"
                                         BorderThickness="0"
-                                        Click="Check">
+                                        Click="Check"
+                                        Visibility="{Binding IsAppointment}">
                                     <Image Source="{Binding IsFinishedPath}"/>   
                                 </Button>
                             </Grid>
@@ -120,7 +121,7 @@
             </ItemsControl>
 
             <Label Content="Goals:"
-                   FontSize="35"
+                   FontSize="25"
                    Background="LightGray"/>
             <Label Name="goals_existance"
                    Content="No tasks"

@@ -8,7 +8,7 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Height="Auto"
       Title="Statistic"
-      Background="#fffdd0">
+      Background="#fdf5e6">
     <ScrollViewer VerticalScrollBarVisibility="Visible"
                   Height="Auto">
         <StackPanel>
