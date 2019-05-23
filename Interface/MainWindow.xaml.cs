@@ -86,9 +86,9 @@ namespace Interface
             if (newTask.DialogResult == true)
             {
                 controller.AddTask(newTask.GetTask());
-            }
 
-            this.PageHolder.Navigate(new Filters());
+                this.PageHolder.Navigate(new Filters());
+            }
         }
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)

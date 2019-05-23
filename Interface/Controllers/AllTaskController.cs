@@ -27,8 +27,7 @@ namespace Interface.Controllers
         protected override void ReAddGoal(TaskViewModel model)
         {
             HelperFunctions.RemoveElement<TaskViewModel>(this.goals, model);
-            HelperFunctions.PutInTheRightPlace<TaskViewModel>(this.goals, model);
-            HelperFunctions.PutInTheRightPlace<TaskViewModel>(this.tasks, model);
+            HelperFunctions.RemoveElement<TaskViewModel>(this.tasks, model);
         }
 
         protected override void RaAddModel(TaskViewModel changed)

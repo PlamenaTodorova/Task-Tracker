@@ -12,7 +12,8 @@
     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                   Name="scroll"
                   VerticalAlignment="Stretch"
-                  Height="Auto">
+                  Height="Auto"
+                  Margin="0 0 0 10">
         <StackPanel>
             <Label Content="Tasks:"
                    FontSize="20"
