@@ -13,7 +13,7 @@
                   Name="scroll"
                   VerticalAlignment="Stretch"
                   Height="Auto"
-                  Margin="0 0 0 10">
+                  Margin="0 0 0 5">
         <StackPanel>
             <Label Content="Tasks:"
                    FontSize="20"

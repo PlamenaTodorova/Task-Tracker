@@ -89,6 +89,7 @@ namespace Interface
 
                 this.PageHolder.Navigate(new Filters());
             }
+
         }
 
         private void SwitchToAllTasks(object sender, RoutedEventArgs e)
