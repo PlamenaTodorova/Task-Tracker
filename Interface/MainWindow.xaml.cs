@@ -102,5 +102,10 @@ namespace Interface
         {
             this.PageHolder.Navigate(new Statistic());
         }
+
+        private void GoToCalendar(object sender, RoutedEventArgs e)
+        {
+            this.PageHolder.Navigate(new CallendarHolder());
+        }
     }
 }

@@ -65,8 +65,14 @@
     <Compile Include="Controllers\PastTasksController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\TomorrowsTaskController.cs" />
+    <Compile Include="Pages\CallendarHolder.xaml.cs">
+      <DependentUpon>CallendarHolder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Filters.xaml.cs">
       <DependentUpon>Filters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Month.xaml.cs">
+      <DependentUpon>Month.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PastDay.xaml.cs">
       <DependentUpon>PastDay.xaml</DependentUpon>
@@ -76,6 +82,9 @@
     </Compile>
     <Compile Include="Pages\Tomorrow.xaml.cs">
       <DependentUpon>Tomorrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Week.xaml.cs">
+      <DependentUpon>Week.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\EnumBindingSourceExtension.cs" />
     <Compile Include="Utilities\EnumDescriptionTypeConverter.cs" />
@@ -106,11 +115,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CallendarHolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DayFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Filters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Month.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Tomorrow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Week.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

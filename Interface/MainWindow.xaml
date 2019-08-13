@@ -150,7 +150,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource ImageButtonStyle}">
+                    <Button Style="{StaticResource ImageButtonStyle}"
+                            Click="GoToCalendar">
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15">
                             <Image Source="Icons/calendar.png"/>
