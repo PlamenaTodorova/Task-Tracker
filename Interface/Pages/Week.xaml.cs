@@ -16,24 +16,14 @@ using System.Windows.Shapes;
 namespace Interface.Pages
 {
     /// <summary>
-    /// Interaction logic for Callendar.xaml
+    /// Interaction logic for Week.xaml
     /// </summary>
-    public partial class CallendarHolder : Page
+    public partial class Week : Page
     {
-        public CallendarHolder()
+        public Week()
         {
             InitializeComponent();
-            this.calendarFrame.Navigate(new Month());
-        }
-
-        private void SwitchToMonth(object sender, RoutedEventArgs e)
-        {
-            this.calendarFrame.Navigate(new Month());
-        }
-
-        private void SwitchToWeek(object sender, RoutedEventArgs e)
-        {
-            this.calendarFrame.Navigate(new Week());
+            this.days.ItemsSource = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         }
     }
 }
