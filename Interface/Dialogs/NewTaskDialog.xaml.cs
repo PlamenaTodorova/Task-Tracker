@@ -58,11 +58,13 @@ namespace Interface.Dialogs
         {
             if (this.IsValid())
                 this.DialogResult = true;
+            else
+                this.ErrorMessage();
         }
 
         private bool IsValid()
         {
-            if (model.Name != null && model.Name != "" 
+            if (model.Name != null && model.Name != ""
                 && model.TaskType != null && model.TaskType != "")
             {
                 if (model.TaskType != "Goal")
@@ -71,6 +73,16 @@ namespace Interface.Dialogs
                     return true;
             }
             return false;
+        }
+
+        private void ErrorMessage()
+        {
+            if (model.Name == null || model.Name == "")
+                MessageBox.Show("Invalid name: No name for the task");
+            else if (model.TaskType == null || model.TaskType == "")
+                MessageBox.Show("Invalid type: No type chosen");
+            else if (model.TaskType != "Goal" && model.Deadline <= DateTime.Today)
+                MessageBox.Show("Invalid date: The date should be in the futer.");
         }
 
         private void CheckType(object sender, SelectionChangedEventArgs e)
