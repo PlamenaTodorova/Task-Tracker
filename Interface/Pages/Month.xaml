@@ -31,17 +31,19 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Opacity="0.15"
-                                Text="1"
+                                Text="{Binding Date}"
                                 FontSize="56"/>
                             <StackPanel 
                                 Orientation="Horizontal">
-                                <ItemsControl Name="tasks">
+                                <ItemsControl 
+                                    Name="tasks"
+                                    ItemsSource="{Binding Tasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Image 
                                                 Height="20" 
                                                 Width="20"
-                                                Source="../Icons/goal.png"/>
+                                                Source="{Binding PicturePath}"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>                   

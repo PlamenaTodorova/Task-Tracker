@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,13 @@ namespace Interface.Pages
     /// </summary>
     public partial class Week : Page
     {
-        public Week()
+        CalendarController controller;
+
+        public Week(CalendarController controller)
         {
             InitializeComponent();
-            this.days.ItemsSource = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            this.controller = controller;
+            this.days.ItemsSource = this.controller.GetWeek();
         }
     }
 }
